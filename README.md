@@ -17,7 +17,9 @@ Install
 Usage
 ---------------------
 
-The following code below will return the top 20 video results.
+```
+var search = require('scrape-youtube');
+```
 
 # Basic Search
 ---------------------
@@ -56,8 +58,6 @@ search("Upside down and inside out", {
 TODO
 ----------------------
 
-- ~Result limit~
-- ~Additional filter options~
 - Multiple Pages
 - Sorting Options
 
