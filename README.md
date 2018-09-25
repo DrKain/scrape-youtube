@@ -17,7 +17,7 @@ Install
 Usage
 ---------------------
 
-```
+```javascript
 var search = require('scrape-youtube');
 ```
 
