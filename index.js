@@ -1,6 +1,16 @@
 var jsdom = require('jsdom');
 
-function parse(url, callback){
+var url = "https://www.youtube.com/results?";
+var filter = {
+    any : "CAA%253D",
+    video : "EgIQAQ%253D%253D",
+    channel : "EgIQAg%253D%253D",
+    playlist : "EgIQAw%253D%253D",
+    movie : "EgIQBA%253D%253D",
+    show : "EgIQBQ%253D%253D"
+};
+
+function parse(url, options, callback){
 
     jsdom.JSDOM.fromURL(url, {
         resources : 'usable'
@@ -8,33 +18,85 @@ function parse(url, callback){
         var $ = require('jquery')(dom.window);
         var results = [];
 
-        $(dom.window).ready(function(){
+        function aspl(s){
+            var spl = s.split(':');
+            if(spl.length === 0) return +spl;
+            else {
+                var sum = +spl.pop();
+                if(spl.length === 1)
+                    sum += +spl[0] * 60;
+                if(spl.length === 2){
+                    sum += +spl[1] * 60;
+                    sum += +spl[0] * 3600;
+                }
+                return sum;
+            }
+        }
 
-            $(".yt-lockup").each(function(i, v){
-                var $video = $(v);
+        var first = false;
 
-                var result = {
-                    title           : $video.find(".yt-lockup-title a").text(),
-                    duration        : $video.find(".video-time").text().trim(),
-                    thumbnail       : $video.find('.yt-thumb-simple img').attr('data-thumb') || $video.find('.yt-thumb-simple img').attr('src'),
-                    upload_date     : $video.find('.yt-lockup-meta-info li:first-of-type').text(),
-                    views           : $video.find('.yt-lockup-meta-info li:last-of-type').text(),
-                    description     : $video.find('.yt-lockup-description').text(),
-                    link            : "https://youtube.com" + $video.find('a.yt-uix-tile-link').attr('href')
-                };
+        $(".yt-lockup").each(function(i, v){
+            var $video = $(v);
 
-                results.push(result);
-            });
+            var type = $video.find('.accessible-description').text();
+            type = type.indexOf(" - Channel") > -1 ? "channel" : type;
+            type = type.indexOf(" - Duration:") > -1 ? "video" : type;
+            type = type.indexOf(" - Playlist") > -1 ? "playlist" : type;
 
-            return callback(null, results);
+            var upload_date = null;
+            var views = null;
+            var video_count = null;
 
+            if(type === "video"){
+                upload_date = $video.find('.yt-lockup-meta-info li:first-of-type').text();
+                views = +$video.find('.yt-lockup-meta-info li:last-of-type').text().replace(/[^0-9.]/g, '');
+            }
+
+            if(type === "playlist"){
+                video_count = +$video.find(".formatted-video-count-label b").text();
+            }
+
+            var result = {
+                type            : type,
+
+                channel         : $video.find(".yt-lockup-byline a").text() || null,
+                channel_link    : "https://youtube.com" + $video.find(".yt-lockup-byline a").attr('href') || null,
+
+                title           : $video.find(".yt-lockup-title a").text(),
+                duration        : aspl($video.find(".video-time").text().trim()) || null,
+                thumbnail       : $video.find('.yt-thumb-simple img').attr('data-thumb') || $video.find('.yt-thumb-simple img').attr('src'),
+                upload_date     : upload_date,
+                views           : views,
+                video_count     : video_count,
+                description     : $video.find('.yt-lockup-description').text() || null,
+                link            : "https://youtube.com" + $video.find('a.yt-uix-tile-link').attr('href')
+            };
+
+            if(options.null_values === false){
+                Object.keys(result).forEach(function(i){
+                    if(result[i] === null) delete result[i];
+                })
+            }
+
+            if(i < options.limit) results.push(result);
         });
+
+        return callback(null, results);
     });
 }
 
-module.exports = function(query, callback){
+module.exports = function(query, options, callback){
+    if(typeof arguments[0] === "string") query = arguments[0];
+    if(typeof arguments[1] === "function") callback = arguments[1];
+    if(typeof arguments[2] === "undefined") options = {};
+
+    options = Object.assign({
+        type : 'video',
+        null_values : false,
+        limit : 20
+    }, options);
+
     if(query.trim().length === 0) return callback(new Error("Search cannot be blank"), null);
-    query = query.replace(/\s/g, '+');
-    // sp=EgIQAQ%253D%253D = filter videos only
-    parse("https://www.youtube.com/results?sp=EgIQAQ%253D%253D&search_query=" + query, callback);
+    if(options.type && filter[options.type]) url += "sp=" + filter[options.type] + "&";
+    parse(url + "search_query=" + query.replace(/\s/g, '+'), options || {}, callback);
 };

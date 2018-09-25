@@ -5,7 +5,8 @@ scrape-youtube
 
 **What is this?***
 ------------------
-scrape-youtube is a package for scraping youtube search results, inspired by broken package `youtube-scrape`.
+scrape-youtube is A NodeJS Package to scrape information from search results. This supports videos, playlists, channels, movies and shows.
+Right now, It supports three basic options that are explained below.
 This one uses `jsdom 12.0.0` and the latest version of `jQuery` to retrieve and parse the results.
 
 Install
@@ -16,33 +17,49 @@ Install
 Usage
 ---------------------
 
+The following code below will return the top 20 video results.
+
+# Basic Search
+---------------------
+
 ```javascript
-var search = require('../index'); // require('scrape-youtube');
-
-search("Poets of the fall - Sleep", function(err, results){
-    if(err) console.warn(err);
-    else console.log( JSON.stringify(results[0], null, 2) );
+search("Upside down and inside out", function(err, results){
+    console.log(JSON.stringify(results, null, 2));
 });
-
-/* Expected Output
-
- {
-    "title": "Poets of the Fall - Sleep",
-    "duration": "9:05",
-    "thumbnail": "https://i.ytimg.com/vi/PFDPf1b-qqQ/hqdefault.jpg?sqp=-oaymwEjCPYBEIoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBxooXt6z56yu_LbVuE-P6t-s_KEA",
-    "upload_date": "9 years ago",
-    "views": "65,448 views",
-    "description": "Sleep by Poets of the Fall.",
-    "link": "https://youtube.com/watch?v=PFDPf1b-qqQ"
- }
-
- */
 ```
 
-Options / Settings
+Additional Options
 ----------------------
 
-No customizable options or settings yet.
+- limit
+    - Number of videos returned in the response. Max 20, minimum 0.
+    default=20
+- type
+    - The type of results you want to receive.
+    Allowed: any, video, channel, playlist, movie, show
+    default=video
+- null_values
+    - Allow null values to be returned in the results.
+    default=false
+
+
+```javascript
+search("Upside down and inside out", {
+    limit : 5,
+    type : "video",
+    null_values : true
+}, function(err, results){
+    console.log(JSON.stringify(results, null, 2));
+});
+```
+
+TODO
+----------------------
+
+- ~Result limit~
+- ~Additional filter options~
+- Multiple Pages
+- Sorting Options
 
 **Additional Notes**
 - Please report any issues [here](https://github.com/TryHardHusky/scrape-youtube/issues)
