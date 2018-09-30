@@ -9,6 +9,8 @@ scrape-youtube is A NodeJS Package to scrape information from search results. Th
 Right now, It supports three basic options that are explained below.
 This one uses `jsdom 12.0.0` and the latest version of `jQuery` to retrieve and parse the results.
 
+Note: scrape-youtube@0.0.4+ uses promises instead of callbacks.
+
 Install
 ---------------------
 
@@ -25,8 +27,8 @@ var search = require('scrape-youtube');
 ---------------------
 
 ```javascript
-search("Upside down and inside out", function(err, results){
-    console.log(JSON.stringify(results, null, 2));
+search("Upside down and inside out").then(function(results){
+    console.log(results);
 });
 ```
 
@@ -48,10 +50,11 @@ Additional Options
 ```javascript
 search("Upside down and inside out", {
     limit : 5,
-    type : "video",
-    null_values : true
-}, function(err, results){
-    console.log(JSON.stringify(results, null, 2));
+    type : "video"
+}).then(function(results){
+    console.log(results);
+}, function(err){
+    console.log(err);
 });
 ```
 
