@@ -71,8 +71,17 @@ function parse(url, options){
                     views           : views,
                     video_count     : video_count,
                     description     : $video.find('.yt-lockup-description').text() || null,
-                    link            : "https://youtube.com" + $video.find('a.yt-uix-tile-link').attr('href')
+                    link            : "https://youtube.com" + $video.find('a.yt-uix-tile-link').attr('href'),
+                    verified        : false
                 };
+
+                // No way to discriminate between "verified artist" and "verified channel"
+                // Verified artists will appear as a music note on the channel
+                // Example: https://www.youtube.com/user/OkGo
+                var $sver = $video.find('span.yt-channel-title-icon-verified');
+                if($sver && $sver.attr('title') === 'Verified'){
+                    result.verified = true;
+                }
 
                 if(options.null_values === false){
                     Object.keys(result).forEach(function(i){
