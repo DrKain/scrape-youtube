@@ -1,10 +1,7 @@
-var search = require('../index'); // require('scrape-youtube');
+const youtube = require('../index'); // require('scrape-youtube');
+const search = youtube.search;
 
-search("Upside down and inside out", {
+search('Upside down and inside out', {
     limit : 5,
-    type : "video"
-}).then(function(results){
-    console.log(results);
-}, function(err){
-    console.log(err);
-});
+    type : 'video'
+}).then(console.log, console.log);

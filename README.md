@@ -5,11 +5,8 @@ scrape-youtube
 
 **What is this?***
 ------------------
-scrape-youtube is A NodeJS Package to scrape information from search results. This supports videos, playlists, channels, movies and shows.
-Right now, It supports three basic options that are explained below.
-This one uses `jsdom 12.0.0` and the latest version of `jQuery` to retrieve and parse the results.
-
-Note: scrape-youtube@0.0.4+ uses promises instead of callbacks.
+Scrape information from youtube search results. This supports videos, playlists, channels, movies and shows.  
+This was made for Discord Bots.
 
 Install
 ---------------------
@@ -48,14 +45,27 @@ Additional Options
 
 
 ```javascript
-search("Upside down and inside out", {
-    limit : 5,
-    type : "video"
-}).then(function(results){
-    console.log(results);
-}, function(err){
-    console.log(err);
-});
+const results = await search("Upside down and inside out", { limit : 5, type : "video" });
+```
+
+Example Result: 
+
+```json 
+[
+  {
+    "type": "video",
+    "channel": "Channel Name",
+    "channel_link": "https://youtube.com/channel/XXXXXXXXX",
+    "title": "Video Title",
+    "duration": 110,
+    "thumbnail": "https://i.ytimg.com/vi/XXXXXXXXXXX/hqdefault.jpg?XXXXXXXXXX",
+    "upload_date": "4 months ago",
+    "views": 524759,
+    "description": "A video description",
+    "link": "https://youtube.com/watch?v=XXXXXXXXXXX",
+    "verified": false
+  }
+]
 ```
 
 TODO
@@ -65,4 +75,4 @@ TODO
 - Sorting Options
 
 **Additional Notes**
-- Please report any issues [here](https://github.com/TryHardHusky/scrape-youtube/issues)
+- Please report any issues [here](https://github.com/DrKain/scrape-youtube/issues)
