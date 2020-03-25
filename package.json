@@ -1,19 +1,8 @@
 {
   "name": "scrape-youtube",
-  "version": "0.0.8",
-  "dependencies": {
-    "jquery": "^3.4.1",
-    "jsdom": "^12.2.0"
-  },
-  "author": {
-    "name": "Kain",
-    "url": "http://ksir.pw"
-  },
-  "bugs": {
-    "url": "https://github.com/DrKain/scrape-youtube/issues"
-  },
-  "description": "A new youtube scraping package inspired by the slightly broken youtube-scrape package",
-  "homepage": "https://github.com/DrKain/scrape-youtube",
+  "version": "0.0.9",
+  "description": "A package to scrape youtube results for discord bots to use.",
+  "main": "index.js",
   "keywords": [
     "yt",
     "video",
@@ -22,15 +11,27 @@
     "tube",
     "youtube",
     "scrape",
-    "search"
+    "search",
+    "discord",
+    "bot"
   ],
-  "license": "MIT",
-  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jsdom": "^12.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DrKain/scrape-youtube.git"
   },
-  "scripts": {
-    "test": "node examples/search-videos.js"
-  }
+  "author": "Kain (ksir.pw)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DrKain/scrape-youtube/issues"
+  },
+  "homepage": "https://github.com/DrKain/scrape-youtube#readme"
 }
