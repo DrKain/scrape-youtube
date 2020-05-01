@@ -7,13 +7,13 @@ export declare enum ResultType {
     movie = "movie",
     live = "live"
 }
-interface SearchOptions {
+export interface SearchOptions {
     query: string;
     type: ResultType | string;
     page: number;
     limit: number;
 }
-interface SearchResult {
+export interface SearchResult {
     type: ResultType;
     channel: {
         name: string;
@@ -111,4 +111,3 @@ export declare class Youtube {
     searchOne(query: string): Promise<SearchResult | null>;
 }
 export declare const youtube: Youtube;
-export {};
