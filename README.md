@@ -1,78 +1,87 @@
 scrape-youtube
 =============
 
-[![NPM](https://nodei.co/npm/scrape-youtube.png?downloads=true)](https://nodei.co/npm/scrape-youtube/)
+[![NPM](https://nodei.co/npm/scrape-youtube.png?downloads=true)](https://www.npmjs.com/package/scrape-youtube)  
+[![NPM](https://img.shields.io/npm/v/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube) [![NPM](https://img.shields.io/librariesio/github/DrKain/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube)  
 
-**What is this?***
+  
+ **What is this?***
 ------------------
 Scrape information from youtube search results. This supports videos, playlists, channels, movies and shows.  
-This was made for Discord Bots.
-
-Install
+This was made for Discord Bots but can be used for whatever.  
+  
+Basic Use
 ---------------------
 
-```npm install --save scrape-youtube```
-
-Usage
----------------------
-
+Require the package using javascript
 ```javascript
-var search = require('scrape-youtube');
+const youtube = require('scrape-youtube').youtube;
+// or typescript
+// import { youtube } from 'scrape-youtube';
 ```
 
-# Basic Search
----------------------
+Then you're good to go.  
 
 ```javascript
-search("Upside down and inside out").then(function(results){
-    console.log(results);
+youtube.search('Short Change Hero').then(results => {
+    console.log(results)
 });
+// To quickly get one result: 
+// youtube.searchOne('Short Change Hero').then(...)
 ```
 
-Additional Options
-----------------------
+## Example Response (video)
+```json
+{
+  "type": "video",
+  "channel": {
+    "name": "Magloire Lamine",
+    "link": "https://youtube.com/user/TENESANGO",
+    "verified": false
+  },
+  "id": "lkvScx3Po8I",
+  "title": "The Heavy - Short Change Hero",
+  "link": "https://www.youtube.com/watch?v=lkvScx3Po8I",
+  "description": "... long description ...",     
+  "thumbnail": "https://i.ytimg.com/vi/lkvScx3Po8I/hqdefault.jpg",
+  "duration": 238,
+  "views": 7960221,
+  "uploaded": "6 years ago"
+}
+```  
+  
+## Filter result types
+Accepts either `any`, `video`, `channel`, `playlist`, `movie` or `live`.
 
-- limit
-    - Number of videos returned in the response. Max 20, minimum 0.
-    default=20
-- type
-    - The type of results you want to receive.
-    Allowed: any, video, channel, playlist, movie, show
-    default=video
-- null_values
-    - Allow null values to be returned in the results.
-    default=false
-
+##### **Be careful when using `any` because values like `likes` and `views` are not in playlist types.**
 
 ```javascript
-const results = await search("Upside down and inside out", { limit : 5, type : "video" });
+await youtube.search('Ok Go', { type: 'playlist' });
+
+// import { ResultType } from 'scrape-youtube';
+// await youtube.search('Ok Go', { type: ResultType.playlist });
 ```
 
-Example Result: 
+## Limit number of results
+```javascript
+// limit to 5 results
+await youtube.search('Ok Go', { limit: 5 });
+```
 
-```json 
-[
-  {
-    "type": "video",
-    "channel": "Channel Name",
-    "channel_link": "https://youtube.com/channel/XXXXXXXXX",
-    "title": "Video Title",
-    "duration": 110,
-    "thumbnail": "https://i.ytimg.com/vi/XXXXXXXXXXX/hqdefault.jpg?XXXXXXXXXX",
-    "upload_date": "4 months ago",
-    "views": 524759,
-    "description": "A video description",
-    "link": "https://youtube.com/watch?v=XXXXXXXXXXX",
+## Example Response (playlist)  
+```json
+{
+  "type": "playlist",
+  "channel": {
+    "name": "Richy Vaughn",
+    "link": "https://youtube.com/channel/UCyZQ2K2WZ8PEyRDM4kM9pmA",
     "verified": false
-  }
-]
+  },
+  "id": "PLSWKpdZ-Q4JIWGY9grtQr7iCl30-eLHxW",
+  "title": "Short change hero",
+  "link": "https://www.youtube.com/watch?v=l6eSksEp27U&list=PLSWKpdZ-Q4JIWGY9grtQr7iCl30-eLHxW",
+  "description": "",
+  "thumbnail": "https://i.ytimg.com/vi/l6eSksEp27U/hqdefault.jpg",
+  "videoCount": 12
+}
 ```
-
-TODO
-----------------------
-
-- Multiple Pages
-- Sorting Options
-
-**Additional Notes**
-- Please report any issues [here](https://github.com/DrKain/scrape-youtube/issues)
