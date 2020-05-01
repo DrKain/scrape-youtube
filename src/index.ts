@@ -19,14 +19,14 @@ const ResultFilter: { [key in ResultType]: string } = {
     [ResultType.live]: 'EgJAAQ%253D%253D'
 };
 
-interface SearchOptions {
+export interface SearchOptions {
     query: string;
     type: ResultType | string;
     page: number;
     limit: number;
 }
 
-interface SearchResult {
+export interface SearchResult {
     type: ResultType;
 
     channel: {

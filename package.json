@@ -1,6 +1,6 @@
 {
   "name": "scrape-youtube",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A package to scrape youtube results for discord bots to use.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
