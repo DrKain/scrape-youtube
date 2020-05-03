@@ -15,9 +15,9 @@ Basic Use
 
 Require the package using javascript
 ```javascript
-const youtube = require('scrape-youtube');
+const youtube = require('scrape-youtube').youtube;
 // or typescript
-// import youtube from 'scrape-youtube';
+// import { youtube } from 'scrape-youtube';
 ```
 
 Then you're good to go.  
@@ -58,7 +58,7 @@ Accepts either `any`, `video`, `channel`, `playlist`, `movie` or `live`.
 ```javascript
 await youtube.search('Ok Go', { type: 'playlist' });
 
-// import youtube, { ResultType } from 'scrape-youtube';
+// import { ResultType } from 'scrape-youtube';
 // await youtube.search('Ok Go', { type: ResultType.playlist });
 ```
 
