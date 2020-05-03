@@ -1,4 +1,4 @@
-import { youtube } from 'scrape-youtube';
+import youtube from 'scrape-youtube';
 
 // Quick search for a single video. Good for discord bots.
 // Returns `null` if no video is found.

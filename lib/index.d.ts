@@ -110,4 +110,5 @@ export declare class Youtube {
      */
     searchOne(query: string): Promise<SearchResult | null>;
 }
-export declare const youtube: Youtube;
+declare const youtube: Youtube;
+export default youtube;
