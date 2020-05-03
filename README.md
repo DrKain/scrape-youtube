@@ -1,8 +1,7 @@
 scrape-youtube
 =============
 
-[![NPM](https://nodei.co/npm/scrape-youtube.png?downloads=true)](https://www.npmjs.com/package/scrape-youtube)  
-[![NPM](https://img.shields.io/npm/v/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube) [![NPM](https://img.shields.io/librariesio/github/DrKain/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube)  
+[![NPM](https://img.shields.io/npm/v/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube) 
 
   
  **What is this?***
