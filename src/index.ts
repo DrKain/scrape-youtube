@@ -315,7 +315,13 @@ export class Youtube {
                         data.videoCount = +$result.find('.formatted-video-count-label b').text();
                     }
 
-                    if (index < params.limit) results.push(data);
+                    if (index < params.limit) {
+                        // Skip random google ads that get scraped accidentally
+                        // I need a sample of the response to filter this correctly
+                        if (!data.link.includes('www.googleadservices.com')) {
+                            results.push(data);
+                        }
+                    }
                 });
 
                 resolve(results);
@@ -377,4 +383,5 @@ export class Youtube {
 }
 
 /* For quick use without creating a new instance */
-export const youtube = new Youtube();
+const youtube = new Youtube();
+export default youtube;
