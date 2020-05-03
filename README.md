@@ -15,7 +15,7 @@ Basic Use
 
 Require the package using javascript
 ```javascript
-const youtube = require('scrape-youtube');
+const youtube = require('scrape-youtube').default;
 // or typescript
 // import youtube from 'scrape-youtube';
 ```
