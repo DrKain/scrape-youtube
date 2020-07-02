@@ -1,19 +1,24 @@
 scrape-youtube
 =============
 
-[![NPM](https://img.shields.io/npm/v/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube) 
+[![NPM](https://img.shields.io/npm/v/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube) [![NPM](https://img.shields.io/npm/dt/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube) [![NPM](https://img.shields.io/npm/types/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube)
+
+
 
   
  **What is this?***
 ------------------
-Scrape information from youtube search results. This was made for Discord Bots but can be used for whatever.  
+Scrape information from youtube search results. This supports videos, playlists, channels, movies and shows.  
+This was made for Discord Bots but can be used for whatever.  
   
 Basic Use
 ---------------------
 
-Require the package 
+Require the package using javascript
 ```javascript
-import { youtube } from 'scrape-youtube';
+const youtube = require('scrape-youtube').default;
+// or typescript
+// import youtube from 'scrape-youtube';
 ```
 
 Then you're good to go.  
@@ -45,5 +50,39 @@ youtube.search('Short Change Hero').then(results => {
   "uploaded": "6 years ago"
 }
 ```  
+  
+## Filter result types
+Accepts either `any`, `video`, `channel`, `playlist`, `movie` or `live`.
 
-Other result types (like playlists and and live streams) are unsupported in this version. They will be re-added in the future, When I get more time.
+##### **Be careful when using `any` because values like `likes` and `views` are not in playlist types.**
+
+```javascript
+await youtube.search('Ok Go', { type: 'playlist' });
+
+// import youtube, { ResultType } from 'scrape-youtube';
+// await youtube.search('Ok Go', { type: ResultType.playlist });
+```
+
+## Limit number of results
+```javascript
+// limit to 5 results
+await youtube.search('Ok Go', { limit: 5 });
+```
+
+## Example Response (playlist)  
+```json
+{
+  "type": "playlist",
+  "channel": {
+    "name": "Richy Vaughn",
+    "link": "https://youtube.com/channel/UCyZQ2K2WZ8PEyRDM4kM9pmA",
+    "verified": false
+  },
+  "id": "PLSWKpdZ-Q4JIWGY9grtQr7iCl30-eLHxW",
+  "title": "Short change hero",
+  "link": "https://www.youtube.com/watch?v=l6eSksEp27U&list=PLSWKpdZ-Q4JIWGY9grtQr7iCl30-eLHxW",
+  "description": "",
+  "thumbnail": "https://i.ytimg.com/vi/l6eSksEp27U/hqdefault.jpg",
+  "videoCount": 12
+}
+```
