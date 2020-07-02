@@ -1,4 +1,3 @@
-/// <reference types="cheerio" />
 export declare enum ResultType {
     any = "any",
     video = "video",
@@ -7,6 +6,9 @@ export declare enum ResultType {
     movie = "movie",
     live = "live"
 }
+export declare const ResultFilter: {
+    [key in ResultType]: string;
+};
 export interface SearchOptions {
     query: string;
     type: ResultType | string;
@@ -46,57 +48,45 @@ export declare class Youtube {
      */
     private querystring;
     /**
-     * Extracts the youtube thumbnail and removes the unnecessary parameters
-     * @param $result Cheerio Element
+     * Generate video thumbnail
+     * @param id Youtube video ID
      */
     private getThumbnail;
     /**
-     * Fetches the channel information (link, name and verified status)
-     * @param $result Cheerio Element
+     * Convert an hh:mm:ss string into total seconds
+     * @param text hh:mm:ss string
+     */
+    private parseDuration;
+    /**
+     * Convert a string into a number.
+     * @param s string
+     */
+    private num;
+    /**
+     * Compresses the "runs" texts into a single string.
+     * @param key vRender key
+     */
+    private compress;
+    /**
+     * Fetch channel badges and check if they are verified channels
+     * @param vRender vRender
+     */
+    private isChannelVerified;
+    /**
+     * Extract channel data from the vRender object
+     * @param vRender vRender
      */
     private getChannelData;
-    /**
-     * Attempts to find the result type based on the badges
-     * and description
-     * @param $result Cheerio Element
-     */
-    private getType;
-    /**
-     * Extract the title data and ID.
-     * Fetches playlist ID for playlists and youtube ID for everything else.
-     * @param $result Cheerio Element
-     * @param type ResultType
-     */
-    private getTitleData;
-    /**
-     * Fetch the duration (in seconds) from the video type (hh:mm:ss)
-     * @param $result Cheerio Element
-     */
     private getDuration;
-    /**
-     * Fetch the number of people watching a live stream
-     * @param $result Cheerio Element
-     * @param $ CheerioStatic
-     */
-    getWatchers($result: any, $: CheerioStatic): number;
-    /**
-     * Get the number of views a video has
-     * @param $result Cheerio Element
-     * @param $ CheerioStatic
-     */
     private getViews;
-    /**
-     * Get the date a video was uploaded
-     * @param $result Cheerio Element
-     * @param $ CheerioStatic
-     */
-    private getResultTimestamp;
+    private getUploadedDate;
     /**
      * Load a url and begin scraping the data.
      * @param url Youtube URL
      * @param params SearchOptions
      */
     private load;
+    private extractInitialData;
     /**
      * Search youtube for results.
      * Result type defaults to 'video'. See advanced use for more information
