@@ -316,5 +316,5 @@ export class Youtube {
 }
 
 /* For quick use without creating a new instance */
-export const youtube = new Youtube();
-
+const youtube = new Youtube();
+export default youtube;
