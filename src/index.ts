@@ -188,23 +188,25 @@ export class Youtube {
                     data.forEach((item: any) => {
                         try {
                             const vRender = item['videoRenderer'];
-                            const id = vRender['videoId'];
+                            if (vRender) {
+                                const id = vRender['videoId'];
 
-                            // TODO: Add multiple types again
-                            const result: SearchResult = {
-                                type: ResultType.video,
-                                channel: this.getChannelData(vRender),
-                                id,
-                                title: this.compress(vRender['title']),
-                                link: `https://www.youtube.com/watch?v=${id}`,
-                                description: this.compress(vRender['descriptionSnippet']),
-                                thumbnail: this.getThumbnail(id),
-                                views: this.getViews(vRender),
-                                duration: this.getDuration(vRender),
-                                uploaded: this.getUploadedDate(vRender)
-                            };
+                                // TODO: Add multiple types again
+                                const result: SearchResult = {
+                                    type: ResultType.video,
+                                    channel: this.getChannelData(vRender),
+                                    id,
+                                    title: this.compress(vRender['title']),
+                                    link: `https://www.youtube.com/watch?v=${id}`,
+                                    description: this.compress(vRender['descriptionSnippet']),
+                                    thumbnail: this.getThumbnail(id),
+                                    views: this.getViews(vRender),
+                                    duration: this.getDuration(vRender),
+                                    uploaded: this.getUploadedDate(vRender)
+                                };
 
-                            results.push(result);
+                                results.push(result);
+                            }
                         } catch (e) {
                             console.log(e);
                         }
