@@ -43,6 +43,9 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "scrape-youtube": "^0.2.2",
+    "ts-node": "^8.10.2",
+    "yargs": "^15.4.0"
   }
 }
