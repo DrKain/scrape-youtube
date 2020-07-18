@@ -1,3 +1,4 @@
+import request = require('request');
 export declare enum ResultType {
     any = "any",
     video = "video",
@@ -84,6 +85,7 @@ export declare class Youtube {
      * Load a url and begin scraping the data.
      * @param url Youtube URL
      * @param params SearchOptions
+     * @param options request.Options
      */
     private load;
     private extractInitialData;
@@ -92,13 +94,15 @@ export declare class Youtube {
      * Result type defaults to 'video'. See advanced use for more information
      * @param query Search Query
      * @param options Search Options
+     * @param requestOptions request.Options
      */
-    search(query: string, options?: Partial<SearchOptions>): Promise<SearchResult[]>;
+    search(query: string, options?: Partial<SearchOptions>, requestOptions?: request.Options): Promise<SearchResult[]>;
     /**
      * Lazy shortcut to get the first result. Probably useful with discord bots.
      * @param query Search String
+     * @param options request.Options
      */
-    searchOne(query: string): Promise<SearchResult | null>;
+    searchOne(query: string, requestOptions?: request.Options): Promise<SearchResult | null>;
 }
 declare const youtube: Youtube;
 export default youtube;

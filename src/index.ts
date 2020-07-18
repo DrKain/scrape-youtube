@@ -172,13 +172,15 @@ export class Youtube {
      * Load a url and begin scraping the data.
      * @param url Youtube URL
      * @param params SearchOptions
+     * @param options request.Options
      */
     private load(
         url: string,
-        params: SearchOptions
+        params: SearchOptions,
+        options?: request.Options
     ): Promise<SearchResult[]> {
         return new Promise((resolve, reject) => {
-            request({ method: 'GET', url }, async (err, res, body) => {
+            request({ method: 'GET', url, ...(options || {}) }, async (err, res, body) => {
                 if (err) return reject(err);
                 try {
                     const results: SearchResult[] = [];
@@ -264,10 +266,12 @@ export class Youtube {
      * Result type defaults to 'video'. See advanced use for more information
      * @param query Search Query
      * @param options Search Options
+     * @param requestOptions request.Options
      */
     public search(
         query: string,
-        options?: Partial<SearchOptions>
+        options?: Partial<SearchOptions>,
+        requestOptions?: request.Options
     ): Promise<SearchResult[]> {
         return new Promise((resolve, reject) => {
             const params: SearchOptions = {
@@ -300,17 +304,18 @@ export class Youtube {
             }
 
             const url = this.getRequestURL(params);
-            this.load(url, params).then(resolve).catch(reject);
+            this.load(url, params, requestOptions).then(resolve).catch(reject);
         });
     }
 
     /**
      * Lazy shortcut to get the first result. Probably useful with discord bots.
      * @param query Search String
+     * @param options request.Options
      */
-    public searchOne(query: string): Promise<SearchResult | null> {
+    public searchOne(query: string, requestOptions?: request.Options): Promise<SearchResult | null> {
         return new Promise((resolve, reject) => {
-            this.search(query, { type: ResultType.video, limit: 1 }).then(results => {
+            this.search(query, { type: ResultType.video, limit: 1 }, requestOptions).then(results => {
                 resolve(results.length ? results[0] : null);
             }).catch(reject);
         });
