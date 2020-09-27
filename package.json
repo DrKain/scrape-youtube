@@ -1,6 +1,6 @@
 {
   "name": "scrape-youtube",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A package to scrape youtube results for discord bots to use.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "ytdl-core": "^3.3.0"
   }
 }

@@ -36,6 +36,7 @@ export interface SearchResult {
 }
 export declare class Youtube {
     host: string;
+    detectLinks: boolean;
     constructor();
     /**
      * Generates a request URL using the search options provided.
@@ -97,6 +98,11 @@ export declare class Youtube {
      * @param requestOptions request.Options
      */
     search(query: string, options?: Partial<SearchOptions>, requestOptions?: request.Options): Promise<SearchResult[]>;
+    /**
+     * Fetches video information using the ytdl-core package, then generates a SearchResult
+     * @param query Youtube URL
+     */
+    private ytdlSearch;
     /**
      * Lazy shortcut to get the first result. Probably useful with discord bots.
      * @param query Search String

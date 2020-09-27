@@ -1,10 +1,7 @@
 import youtube from 'scrape-youtube';
 
 // Quick search for a single video. Good for discord bots.
-// Returns `null` if no video is found.
-youtube.searchOne('Short Change Hero').then(video => {
-    console.log(JSON.stringify(video, null, 2));
-}).catch(console.error);
+youtube.searchOne('Short Change Hero').then(video => console.log(video));
 
-// or async:
-// const video = await youtube.searchOne('Short Change Hero');
+// You can also pass a URL to the searchOne function and ytdl-core will fetch the video information.
+youtube.searchOne('https://www.youtube.com/watch?v=xh49HehENPE').then(video => console.log(video));

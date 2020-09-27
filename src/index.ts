@@ -1,5 +1,6 @@
 import request = require('request');
 import cheerio = require('cheerio');
+import ytdl = require('ytdl-core');
 
 export enum ResultType {
     any = 'any',
@@ -50,6 +51,7 @@ export interface SearchResult {
 
 export class Youtube {
     public host = 'https://www.youtube.com';
+    public detectLinks = false;
 
     constructor() { }
 
@@ -74,9 +76,7 @@ export class Youtube {
      * @param o Object
      */
     private querystring(o: any) {
-        return Object.keys(o).map((v, i) => {
-            return (i !== 0 ? '&' : '?') + `${v}=${o[v]}`;
-        }).join('');
+        return Object.keys(o).map((v, i) => (i !== 0 ? '&' : '?') + `${v}=${o[v]}`).join('');
     }
 
     /**
@@ -92,20 +92,16 @@ export class Youtube {
      * @param text hh:mm:ss string
      */
     private parseDuration(text: string): number {
-        let duration = -1;
+        const nums = text.split(':');
+        let sum = 0;
+        let multi = 1;
 
-        const spl = text.split(':');
-        if (spl.length === 0) duration = +spl;
-        else {
-            duration = +`${spl.pop()}`;
-            if (spl.length === 1) duration += +spl[0] * 60;
-            if (spl.length === 2) {
-                duration += +spl[1] * 60;
-                duration += +spl[0] * 3600;
-            }
+        while (nums.length > 0) {
+            sum += multi * parseInt(nums.pop() || '-1', 10);
+            multi *= 60;
         }
 
-        return duration;
+        return sum;
     }
 
     /**
@@ -273,7 +269,8 @@ export class Youtube {
         options?: Partial<SearchOptions>,
         requestOptions?: request.Options
     ): Promise<SearchResult[]> {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
+
             const params: SearchOptions = {
                 query: query.trim(),
                 page: 0,
@@ -309,15 +306,59 @@ export class Youtube {
     }
 
     /**
+     * Fetches video information using the ytdl-core package, then generates a SearchResult
+     * @param query Youtube URL
+     */
+    private ytdlSearch(query: string): Promise<SearchResult> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const vdata = await ytdl.getInfo(query);
+                if (vdata && vdata.videoDetails) {
+                    const details = vdata.videoDetails;
+
+                    const preview: SearchResult = {
+                        type: ResultType.video,
+                        channel: {
+                            name: details.author.name,
+                            link: details.author.user_url,
+                            verified: details.author.verified
+                        },
+                        id: details.videoId,
+                        title: details.title,
+                        link: `https://www.youtube.com/watch?v=${details.videoId}`,
+                        description: details.shortDescription,
+                        thumbnail: this.getThumbnail(details.videoId),
+                        duration: +details.lengthSeconds,
+                        views: +details.viewCount
+                    };
+
+                    resolve(preview);
+                } else throw new Error('Failed to load video details');
+            } catch (e) {
+                reject(e);
+            }
+        });
+    }
+
+    /**
      * Lazy shortcut to get the first result. Probably useful with discord bots.
      * @param query Search String
      * @param options request.Options
      */
     public searchOne(query: string, requestOptions?: request.Options): Promise<SearchResult | null> {
-        return new Promise((resolve, reject) => {
-            this.search(query, { type: ResultType.video, limit: 1 }, requestOptions).then(results => {
-                resolve(results.length ? results[0] : null);
-            }).catch(reject);
+        return new Promise(async (resolve, reject) => {
+
+            // Detect if input is already a video URL. This
+            // should save some time when it comes to discord
+            // bots
+            if (ytdl.validateURL(query)) {
+                this.ytdlSearch(query).then(resolve).catch(reject);
+            }  else {
+                this.search(query, { type: ResultType.video, limit: 1 }, requestOptions).then(results => {
+                    resolve(results.length ? results[0] : null);
+                }).catch(reject);
+            }
+
         });
     }
 }
