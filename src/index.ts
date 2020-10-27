@@ -226,9 +226,9 @@ export class Youtube {
                 $('script').each((i: number, script: any) => {
                     const html = $(script).html();
 
-                    if (html && html.includes('window["ytInitialData"]')) {
-                        const start = (html.split('window["ytInitialData"] = ').pop() || '');
-                        const end = start.split('window["ytInitialPlayerResponse"]').shift();
+                    if (html && html.includes('ytInitialData')) {
+                        const start = (html.split('var ytInitialData = ').pop() || '');
+                        const end = start.split('\n').shift();
 
                         if (end) {
                             json = JSON.parse(`${end.replace(/;/g, '')}`);
