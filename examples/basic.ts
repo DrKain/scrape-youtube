@@ -1,4 +1,5 @@
-import youtube from 'scrape-youtube';
+import youtube from '../src';
+// import youtube from 'scrape-youtube';
 
 // Quick search for a single video. Good for discord bots.
 youtube.searchOne('Short Change Hero').then(video => console.log(video));

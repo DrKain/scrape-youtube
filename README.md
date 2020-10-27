@@ -12,7 +12,7 @@ Basic Use
 
 Require the package 
 ```javascript
-import { youtube } from 'scrape-youtube';
+import youtube from 'scrape-youtube';
 ```
 
 Then you're good to go.  
@@ -45,4 +45,4 @@ youtube.search('Short Change Hero').then(results => {
 }
 ```  
 
-Other result types (like playlists and and live streams) are unsupported in this version. They will be re-added in the future, When I get more time.
+Other result types (like playlists and and live streams) are unsupported in this version. They will be re-added in the future, When I get more time.  
