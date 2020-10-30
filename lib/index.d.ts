@@ -1,114 +1,25 @@
-import request = require('request');
-export declare enum ResultType {
-    any = "any",
-    video = "video",
-    channel = "channel",
-    playlist = "playlist",
-    movie = "movie",
-    live = "live"
-}
-export declare const ResultFilter: {
-    [key in ResultType]: string;
-};
-export interface SearchOptions {
-    query: string;
-    type: ResultType | string;
-    page: number;
-    limit: number;
-}
-export interface SearchResult {
-    type: ResultType;
-    channel: {
-        name: string;
-        link: string;
-        verified: boolean;
-    };
-    id: string;
-    title: string;
-    link: string;
-    description: string;
-    thumbnail: string;
-    duration?: number;
-    watching?: number;
-    views?: number;
-    uploaded?: string;
-    videoCount?: number;
-}
-export declare class Youtube {
-    host: string;
-    detectLinks: boolean;
+import { SearchOptions, Video } from './interface';
+declare class Youtube {
     constructor();
+    private getURL;
+    private extractRenderData;
     /**
-     * Generates a request URL using the search options provided.
-     * @param params SearchOptions
+     * Parse the data extracted from the page to match each interface
+     * @param data Video Renderer Data
      */
-    private getRequestURL;
+    private parseData;
     /**
-     * Converts an object into a browser query string.
-     * { one: 'two' } becomes ?one=two
-     * @param o Object
-     */
-    private querystring;
-    /**
-     * Generate video thumbnail
-     * @param id Youtube video ID
-     */
-    private getThumbnail;
-    /**
-     * Convert an hh:mm:ss string into total seconds
-     * @param text hh:mm:ss string
-     */
-    private parseDuration;
-    /**
-     * Convert a string into a number.
-     * @param s string
-     */
-    private num;
-    /**
-     * Compresses the "runs" texts into a single string.
-     * @param key vRender key
-     */
-    private compress;
-    /**
-     * Fetch channel badges and check if they are verified channels
-     * @param vRender vRender
-     */
-    private isChannelVerified;
-    /**
-     * Extract channel data from the vRender object
-     * @param vRender vRender
-     */
-    private getChannelData;
-    private getDuration;
-    private getViews;
-    private getUploadedDate;
-    /**
-     * Load a url and begin scraping the data.
-     * @param url Youtube URL
-     * @param params SearchOptions
-     * @param options request.Options
+     * Load the page and scrape the data
+     * @param query Search query
+     * @param options Search options
      */
     private load;
-    private extractInitialData;
     /**
-     * Search youtube for results.
-     * Result type defaults to 'video'. See advanced use for more information
+     * Search YouTube for a list of videos
      * @param query Search Query
-     * @param options Search Options
-     * @param requestOptions request.Options
+     * @param options Optional Search Options
      */
-    search(query: string, options?: Partial<SearchOptions>, requestOptions?: request.Options): Promise<SearchResult[]>;
-    /**
-     * Fetches video information using the ytdl-core package, then generates a SearchResult
-     * @param query Youtube URL
-     */
-    private ytdlSearch;
-    /**
-     * Lazy shortcut to get the first result. Probably useful with discord bots.
-     * @param query Search String
-     * @param options request.Options
-     */
-    searchOne(query: string, requestOptions?: request.Options): Promise<SearchResult | null>;
+    search(query: string, options?: SearchOptions): Promise<Video[]>;
 }
 declare const youtube: Youtube;
 export default youtube;

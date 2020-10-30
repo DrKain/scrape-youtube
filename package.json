@@ -1,7 +1,7 @@
 {
   "name": "scrape-youtube",
-  "version": "0.2.6",
-  "description": "A package to scrape youtube results for discord bots to use.",
+  "version": "1.0.4",
+  "description": "A lightning fast package to scrape YouTube search results. This was made for Discord Bots.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -11,8 +11,7 @@
     "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
     "version": "git add -A src",
-    "postversion": "git push && git push --tags",
-    "test": "ts-node examples/basic.ts"
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -34,16 +33,10 @@
   },
   "homepage": "https://github.com/DrKain/scrape-youtube#readme",
   "devDependencies": {
-    "@types/cheerio": "^0.22.18",
-    "@types/request": "^2.48.4",
     "prettier": "^2.0.5",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
   },
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "request": "^2.88.2",
-    "ytdl-core": "^4.0.0"
-  }
+  "dependencies": {}
 }
