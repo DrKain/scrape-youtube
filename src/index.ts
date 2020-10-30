@@ -97,7 +97,6 @@ class Youtube {
             try {
                 const page = await this.load(query, options);
                 const data = await this.extractRenderData(page);
-                require('fs').writeFileSync('debug.json', JSON.stringify(data, null, 2));
                 const results = await this.parseData(data);
                 resolve(results);
             } catch (e) {
