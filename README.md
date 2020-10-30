@@ -5,44 +5,46 @@ scrape-youtube
   
  **What is this?***
 ------------------
-Scrape information from youtube search results. This was made for Discord Bots but can be used for whatever.  
+A [lightning fast](https://i.imgur.com/ipsWhkv.png) package to scrape YouTube search results. This was made and optimized for Discord Bots. 
   
-Basic Use
----------------------
+#### Install  
+```npm install scrape-youtube```
 
-Require the package 
+#### Require 
 ```javascript
 import youtube from 'scrape-youtube';
+// const youtube = require('scrape-youtube').default;
 ```
 
-Then you're good to go.  
-
+#### Search  
 ```javascript
 youtube.search('Short Change Hero').then(results => {
     console.log(results)
 });
-// To quickly get one result: 
-// youtube.searchOne('Short Change Hero').then(...)
 ```
 
-## Example Response (video)
+#### Example Response
+This is the structure of a single result. The search function will return an array of up to 20 results.
 ```json
 {
-  "type": "video",
-  "channel": {
-    "name": "Magloire Lamine",
-    "link": "https://youtube.com/user/TENESANGO",
-    "verified": false
-  },
   "id": "lkvScx3Po8I",
   "title": "The Heavy - Short Change Hero",
   "link": "https://www.youtube.com/watch?v=lkvScx3Po8I",
-  "description": "... long description ...",     
+  "description": "... long description ...",   
   "thumbnail": "https://i.ytimg.com/vi/lkvScx3Po8I/hqdefault.jpg",
-  "duration": 238,
+  "channel": {
+    "name": "Magloire Lamine",
+    "link": "https://youtube.com/user/TENESANGO",
+    "verified": false,
+    "thumbnail": "https://yt3.ggpht.com/a/AATXAJz3kOe_LDvhRWpQLu1wHb5xU7HNOKvpKQnLQA=s88-c-k-c0xffffffff-no-rj-mo"
+  },  
   "views": 7960221,
+  "duration": 238,
   "uploaded": "6 years ago"
 }
 ```  
 
-Other result types (like playlists and and live streams) are unsupported in this version. They will be re-added in the future, When I get more time.  
+#### Notes
+- Currently additional types like playlists, live streams and movies are unsupported. These will be re-added in some time.  
+- You can load another page by passing `{ page: 1 }` as the second parameter.
+
