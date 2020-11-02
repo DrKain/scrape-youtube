@@ -61,7 +61,6 @@ class Youtube {
                         }
                     }
 
-
                     if (item['videoRenderer'] && !item['videoRenderer']['lengthText']) {
                         try {
                             const result: LiveStream = getStreamData(item['videoRenderer']);
@@ -70,7 +69,6 @@ class Youtube {
                             if (this.debug) console.log(e);
                         }
                     }
-
 
                     if (item['playlistRenderer']) {
                         try {
