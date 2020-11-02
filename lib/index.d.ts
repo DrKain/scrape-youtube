@@ -1,5 +1,6 @@
-import { SearchOptions, Video } from './interface';
+import { SearchOptions, Results } from './interface';
 declare class Youtube {
+    debug: boolean;
     constructor();
     private getURL;
     private extractRenderData;
@@ -14,12 +15,7 @@ declare class Youtube {
      * @param options Search options
      */
     private load;
-    /**
-     * Search YouTube for a list of videos
-     * @param query Search Query
-     * @param options Optional Search Options
-     */
-    search(query: string, options?: SearchOptions): Promise<Video[]>;
+    search(query: string, options?: SearchOptions): Promise<Results>;
 }
 declare const youtube: Youtube;
 export default youtube;

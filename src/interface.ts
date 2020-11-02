@@ -8,7 +8,7 @@ export enum ResultType {
 }
 
 export interface SearchOptions {
-    type?: ResultType;
+    type?: ResultType | string;
     page?: number;
 }
 
@@ -21,6 +21,12 @@ export const ResultFilter: { [key in ResultType]: string } = {
     [ResultType.live]: 'EgJAAQ%253D%253D'
 };
 
+export interface Results {
+    videos: Video[];
+    playlists: Playlist[];
+    streams: LiveStream[];
+}
+
 export interface Channel {
     name: string;
     link: string;
@@ -28,13 +34,23 @@ export interface Channel {
     thumbnail: string;
 }
 
-export interface Result {
-    /** Video or Playlist ID */
+export interface PlaylistVideo {
+    /** Playlist ID */
     id: string;
     title: string;
     link: string;
-    description: string;
+    duration: number;
+    /** Thumbnail of the first video in the playlist */
     thumbnail: string;
+}
+
+export interface Result {
+    /** Video ID */
+    id: string;
+    title: string;
+    link: string;
+    thumbnail: string;
+    /** Information about the uploader */
     channel: Channel;
 }
 
@@ -48,9 +64,12 @@ export interface Video extends Result {
     uploaded: string;
     /** Duration in seconds */
     duration: number;
+    description: string;
 }
 
 export interface Playlist extends Result {
+    /** Number of videos in the playlist */
     videoCount: number;
-    videos: Video[];
+    /** This is not a list of all the videos, just the first two displayed in the search results */
+    videos: PlaylistVideo[];
 }
