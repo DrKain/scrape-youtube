@@ -62,4 +62,8 @@ typings/
 # next.js build output
 .next
 
+# GitHub
 .github
+
+# Local testing
+test.ts
