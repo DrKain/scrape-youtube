@@ -15,11 +15,8 @@ class Youtube {
     private extractRenderData(page: string): Promise<JSON> {
         return new Promise((resolve, reject) => {
             try {
-                // Last update they actually commented it as scraper data.
-                const data = page.split('// scraper_data_begin')[1].trim()
-                    .split('// scraper_data_end')[0].trim()
-                    .slice(0, -1)
-                    .slice('var ytInitialData = '.length);
+                const data = page.split('var ytInitialData = ')[1]
+                .split(';</script>')[0];
 
                 resolve(
                     JSON.parse(data).contents
