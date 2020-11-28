@@ -8,7 +8,7 @@ class Youtube {
 
     private getURL(query: string, options: SearchOptions): string {
         const url = new URL('/results', 'https://www.youtube.com');
-        url.search = new URLSearchParams({ search_query: query }).toString();
+        url.search = new URLSearchParams({ search_query: encodeURIComponent(query) }).toString();
         return url.href + '&sp=' + ResultFilter[(options.type || 'video') as ResultType];
     }
 
