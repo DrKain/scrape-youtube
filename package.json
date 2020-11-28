@@ -1,42 +1,42 @@
 {
-  "name": "scrape-youtube",
-  "version": "2.0.2",
-  "description": "A lightning fast package to scrape YouTube search results. This was made for Discord Bots.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "lint": "tslint -p tsconfig.json",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run lint",
-    "preversion": "npm run lint",
-    "version": "git add -A src",
-    "postversion": "git push && git push --tags"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DrKain/scrape-youtube.git"
-  },
-  "keywords": [
-    "yt",
-    "music",
-    "youtube",
-    "scrape",
-    "search",
-    "discord",
-    "bot"
-  ],
-  "author": "Kain (ksir.pw)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/DrKain/scrape-youtube/issues"
-  },
-  "homepage": "https://github.com/DrKain/scrape-youtube#readme",
-  "devDependencies": {
-    "prettier": "^2.0.5",
-    "tslint": "^6.1.2",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.8.3"
-  },
-  "dependencies": {}
+    "name": "scrape-youtube",
+    "version": "2.0.4",
+    "description": "A lightning fast package to scrape YouTube search results. This was made for Discord Bots.",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "lint": "tslint -p tsconfig.json",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run lint",
+        "preversion": "npm run lint",
+        "version": "git add -A src",
+        "postversion": "git push && git push --tags"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DrKain/scrape-youtube.git"
+    },
+    "keywords": [
+        "yt",
+        "music",
+        "youtube",
+        "scrape",
+        "search",
+        "discord",
+        "bot"
+    ],
+    "author": "Kain (ksir.pw)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/DrKain/scrape-youtube/issues"
+    },
+    "homepage": "https://github.com/DrKain/scrape-youtube#readme",
+    "devDependencies": {
+        "prettier": "^2.0.5",
+        "tslint": "^6.1.2",
+        "tslint-config-prettier": "^1.18.0",
+        "typescript": "^3.8.3"
+    },
+    "dependencies": {}
 }

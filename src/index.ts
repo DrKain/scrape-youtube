@@ -16,20 +16,24 @@ class Youtube {
         return new Promise((resolve, reject) => {
             try {
                 const data = page.split('var ytInitialData = ')[1]
-                .split(';</script>')[0];
+                    .split(';</script>')[0];
 
-                resolve(
-                    JSON.parse(data).contents
-                        .twoColumnSearchResultsRenderer
-                        .primaryContents
-                        .sectionListRenderer
-                        .contents[0]
-                        .itemSectionRenderer
-                        .contents
-                );
+                const videoRenderer = JSON.parse(data).contents
+                    .twoColumnSearchResultsRenderer
+                    .primaryContents
+                    .sectionListRenderer
+                    .contents.filter((item: any) => {
+                        // Filter out google ads and other unimportant information.
+                        return (
+                            item.itemSectionRenderer &&
+                            item.itemSectionRenderer.contents[0].videoRenderer
+                        );
+                    }).shift();
+
+                resolve(videoRenderer.itemSectionRenderer.contents);
             } catch (e) {
                 if (this.debug) console.log(e);
-                reject('Failed to extract video data. The request may have been blocked');
+                reject('Failed to extract video data. Please report this issue on GitHub so it can be fixed.');
             }
         });
     }
