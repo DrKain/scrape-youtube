@@ -1,3 +1,5 @@
+/// <reference types="node" />
+import { RequestOptions } from 'https';
 export declare enum ResultType {
     any = "any",
     video = "video",
@@ -8,7 +10,14 @@ export declare enum ResultType {
 }
 export interface SearchOptions {
     type?: ResultType | string;
-    page?: number;
+    /**
+     * Filter override. See README for more information.
+     */
+    sp?: string;
+    /**
+     * https://nodejs.org/api/http.html#http_http_request_options_callback
+     */
+    requestOptions?: RequestOptions;
 }
 export declare const ResultFilter: {
     [key in ResultType]: string;
