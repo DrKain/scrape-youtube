@@ -8,8 +8,15 @@ class Youtube {
 
     private getURL(query: string, options: SearchOptions): string {
         const url = new URL('/results', 'https://www.youtube.com');
-        url.search = new URLSearchParams({ search_query: encodeURIComponent(query) }).toString();
-        return url.href + '&sp=' + ResultFilter[(options.type || 'video') as ResultType];
+        let sp = ResultFilter[(options.type || 'video') as ResultType];
+
+        url.search = new URLSearchParams({
+            search_query: query
+        }).toString();
+
+        if (options.sp) sp = options.sp;
+
+        return url.href + '&sp=' + sp;
     }
 
     private extractRenderData(page: string): Promise<JSON> {
@@ -93,7 +100,7 @@ class Youtube {
         if (this.debug) console.log(url);
 
         return new Promise((resolve, reject) => {
-            get(url, res => {
+            get(url, (options.requestOptions || {}), res => {
                 res.setEncoding('utf8');
                 let data = '';
                 res.on('data', chunk => data += chunk);

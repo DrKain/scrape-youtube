@@ -5,7 +5,8 @@ Scrape YouTube
   
  **What is this?**
 ------------------
-A [lightning fast](https://i.imgur.com/ipsWhkv.png) package to scrape YouTube search results. This was made and optimized for Discord Bots. 
+A [lightning fast](https://i.imgur.com/ipsWhkv.png) package to scrape YouTube search results. This was made and optimized for Discord Bots.   
+This package is updated often to fix minor problems or parsing issues. Please ensure you have the latest version before making an issue on GitHub.  
   
 #### Install  
 ```npm install scrape-youtube```
@@ -105,8 +106,24 @@ This is the structure of a single playlist result. Please note that the "videos"
 }
 ```
 
+### Custom Filters  
+You can pass `{ sp: 'ABC' }` as the second parameter to use custom filters like upload date, duration, features ect.  
+You will need to fetch the SP parameter yourself from youtube. Please see [this image](https://i.imgur.com/9WHMvkI.png) for an example.  
+
+### Custom Request Options
+You can pass `{ requestOptions: { } }` as the second parameter to use custom headers, agents ect.  
+See [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) for more information.
+Example:  
+```javascript  
+youtube.search('Poets of the fall', {
+    requestOptions: {
+        headers: { 'Accept-Language': 'de' }
+    }
+})
+```
+
 #### Notes
-1. You can load another page by passing `{ page: 1 }` as the second parameter.  
-2. Contributions are welcome and greatly appreciated.  
-3. If this package stops working please create an issue on GitHub so I can fix it as soon as possible.
-4. If this readme is lacking, Please feel free to create a PR fixing or adding any information you feel would help.
+
+- Multiple pages can not be loaded. YouTube changed how loading works so this is currently not available.  
+- If this package stops working please create an issue on GitHub so I can fix it as soon as possible.
+- If this readme is lacking, Please feel free to create a PR fixing or adding any information you feel would help. I gladly accept any helpful pull requests or contributions.

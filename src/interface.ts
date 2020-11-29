@@ -1,3 +1,5 @@
+import { RequestOptions } from 'https';
+
 export enum ResultType {
     any = 'any',
     video = 'video',
@@ -9,7 +11,15 @@ export enum ResultType {
 
 export interface SearchOptions {
     type?: ResultType | string;
-    page?: number;
+    /**
+     * Filter override. See README for more information.
+     */
+    sp?: string;
+    /**
+     * https://nodejs.org/api/http.html#http_http_request_options_callback
+     */
+    requestOptions?: RequestOptions;
+
 }
 
 export const ResultFilter: { [key in ResultType]: string } = {
