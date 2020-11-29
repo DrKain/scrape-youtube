@@ -22,13 +22,7 @@ class Youtube {
                     .twoColumnSearchResultsRenderer
                     .primaryContents
                     .sectionListRenderer
-                    .contents.filter((item: any) => {
-                        // Filter out google ads and other unimportant information.
-                        return (
-                            item.itemSectionRenderer &&
-                            item.itemSectionRenderer.contents[0].videoRenderer
-                        );
-                    }).shift();
+                    .contents.filter((item: any) => item.itemSectionRenderer).shift();
 
                 resolve(videoRenderer.itemSectionRenderer.contents);
             } catch (e) {
