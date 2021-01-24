@@ -3,6 +3,9 @@ import { getStreamData, getPlaylistData, getVideoData } from './parser';
 import { get } from 'https';
 
 class Youtube {
+    /**
+     * Enable debugging for extra information during each search
+     */
     public debug = false;
     constructor() { }
 
@@ -25,16 +28,31 @@ class Youtube {
                 const data = page.split('var ytInitialData = ')[1]
                     .split(';</script>')[0];
 
-                const videoRenderer = JSON.parse(data).contents
+                let render = null;
+                let contents = [];
+                const primary = JSON.parse(data).contents
                     .twoColumnSearchResultsRenderer
-                    .primaryContents
-                    .sectionListRenderer
-                    .contents.filter((item: any) => item.itemSectionRenderer).shift();
+                    .primaryContents;
 
-                resolve(videoRenderer.itemSectionRenderer.contents);
+                // The renderer we want. This should contain all search result information
+                if (primary['sectionListRenderer']) {
+                    if (this.debug) console.log('[ytInitialData] sectionListRenderer');
+                    render = primary.sectionListRenderer.contents.filter((item: any) => item.itemSectionRenderer).shift();
+                    contents = render.itemSectionRenderer.contents;
+                }
+
+                // YouTube occasionally switches to a rich grid renderer.
+                // More testing will be needed to see how different this is from sectionListRenderer
+                if (primary['richGridRenderer']) {
+                    if (this.debug) console.log('[ytInitialData] richGridRenderer');
+                    contents = primary.richGridRenderer.contents.filter((item: any) => {
+                        return item.richItemRenderer && item.richItemRenderer.content;
+                    }).map((item: any) => item.richItemRenderer.content);
+                }
+
+                resolve(contents);
             } catch (e) {
-                if (this.debug) console.log(e);
-                reject('Failed to extract video data. Please report this issue on GitHub so it can be fixed.');
+                reject(e);
             }
         });
     }
