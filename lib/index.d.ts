@@ -1,5 +1,8 @@
 import { SearchOptions, Results } from './interface';
 declare class Youtube {
+    /**
+     * Enable debugging for extra information during each search
+     */
     debug: boolean;
     constructor();
     private getURL;
