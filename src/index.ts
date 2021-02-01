@@ -37,7 +37,17 @@ class Youtube {
                 // The renderer we want. This should contain all search result information
                 if (primary['sectionListRenderer']) {
                     if (this.debug) console.log('[ytInitialData] sectionListRenderer');
-                    render = primary.sectionListRenderer.contents.filter((item: any) => item.itemSectionRenderer).shift();
+
+                    // Filter only the search results, exclude ads and promoted content
+                    render = primary.sectionListRenderer.contents.filter((item: any) => {
+                        return (
+                            item.itemSectionRenderer &&
+                            item.itemSectionRenderer.contents &&
+                            // Exclude carouselAdRenderer
+                            item.itemSectionRenderer.contents.filter((c: any) => !c['carouselAdRenderer']).length
+                        );
+                    }).shift();
+
                     contents = render.itemSectionRenderer.contents;
                 }
 
