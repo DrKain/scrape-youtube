@@ -8,6 +8,12 @@ export declare enum ResultType {
     movie = "movie",
     live = "live"
 }
+export interface DebugData {
+    options?: SearchOptions;
+    results?: Results;
+    page?: string;
+    timestamp?: string;
+}
 export interface SearchOptions {
     type?: ResultType | string;
     /**
@@ -18,6 +24,8 @@ export interface SearchOptions {
      * https://nodejs.org/api/http.html#http_http_request_options_callback
      */
     requestOptions?: RequestOptions;
+    /** ID used when debugging. Do not change */
+    _debugid?: string;
 }
 export declare const ResultFilter: {
     [key in ResultType]: string;
