@@ -1,9 +1,11 @@
 import { SearchOptions, Results } from './interface';
+import { DebugDumper } from './debugdump';
 declare class Youtube {
     /**
      * Enable debugging for extra information during each search
      */
     debug: boolean;
+    debugger: DebugDumper;
     constructor();
     private getURL;
     private extractRenderData;
@@ -18,6 +20,7 @@ declare class Youtube {
      * @param options Search options
      */
     private load;
+    private getDebugID;
     search(query: string, options?: SearchOptions): Promise<Results>;
 }
 declare const youtube: Youtube;

@@ -9,6 +9,13 @@ export enum ResultType {
     live = 'live'
 }
 
+export interface DebugData {
+    options?: SearchOptions;
+    results?: Results;
+    page?: string;
+    timestamp?: string;
+}
+
 export interface SearchOptions {
     type?: ResultType | string;
     /**
@@ -20,6 +27,8 @@ export interface SearchOptions {
      */
     requestOptions?: RequestOptions;
 
+    /** ID used when debugging. Do not change */
+    _debugid?: string;
 }
 
 export const ResultFilter: { [key in ResultType]: string } = {
