@@ -28,8 +28,9 @@ class Youtube {
     private extractRenderData(page: string): Promise<JSON> {
         return new Promise((resolve, reject) => {
             try {
-                const data = page.split('var ytInitialData = ')[1]
-                    .split(';</script>')[0];
+                // TODO: Look into a better way of parsing this
+                const data = page.split('var ytInitialData')[1].substring(3)
+                    .split(';</script>')[0].split('\n').join('');
 
                 let render = null;
                 let contents = [];
@@ -46,8 +47,7 @@ class Youtube {
                         return (
                             item.itemSectionRenderer &&
                             item.itemSectionRenderer.contents &&
-                            // Exclude carouselAdRenderer
-                            item.itemSectionRenderer.contents.filter((c: any) => !c['carouselAdRenderer']).length
+                            item.itemSectionRenderer.contents.filter((c: any) => c['videoRenderer'] || c['playlistRenderer']).length
                         );
                     }).shift();
 
