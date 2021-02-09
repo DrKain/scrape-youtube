@@ -28,9 +28,14 @@ class Youtube {
     private extractRenderData(page: string): Promise<JSON> {
         return new Promise((resolve, reject) => {
             try {
-                // TODO: Look into a better way of parsing this
-                const data = page.split('var ytInitialData')[1].substring(3)
-                    .split(';</script>')[0].split('\n').join('');
+                // TODO: Look into a better way of parsing this. Regex maybe?
+
+                // #1 - Remove all line breaks
+                const data = page.split('\n').join('')
+                    // #2 - Split at start of ytInitialData
+                    .split('var ytInitialData=')[1]
+                    // #3 - Split at the first closing script tag
+                    .split(';</script>')[0];
 
                 let render = null;
                 let contents = [];
