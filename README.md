@@ -122,6 +122,18 @@ youtube.search('Poets of the fall', {
 })
 ```
 
+### Debugging  
+
+In some cases advanced debugging might be required for fixing issues on GitHub.   
+When enabled **each search** will create 3 files, please compress/zip and include with your issue.  
+**It's not recommended to use this unless requested specifically.**  
+  
+```javascript  
+youtube.debug = true; // Enable regular debugging
+youtube.debugger.enabled = true; // Enable debug dumps
+youtube.debugger.setDirectory('path/to/somewhere'); // Directory to write the dumps  
+``` 
+
 #### Notes
 
 - Multiple pages can not be loaded. YouTube changed how loading works so this is currently not available.  

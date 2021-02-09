@@ -1,12 +1,15 @@
-import { ResultFilter, ResultType, SearchOptions, Video, Playlist, Results, LiveStream } from './interface';
+import { ResultFilter, ResultType, SearchOptions, Video, Playlist, Results, LiveStream, DebugData } from './interface';
 import { getStreamData, getPlaylistData, getVideoData } from './parser';
 import { get } from 'https';
+import { DebugDumper } from './debugdump';
 
 class Youtube {
     /**
      * Enable debugging for extra information during each search
      */
     public debug = false;
+    public debugger: DebugDumper = new DebugDumper();
+
     constructor() { }
 
     private getURL(query: string, options: SearchOptions): string {
@@ -137,12 +140,29 @@ class Youtube {
         });
     }
 
+    private getDebugID(): string {
+        return `${Math.random()}`.replace('.', '');
+    }
+
     public search(query: string, options: SearchOptions = {}): Promise<Results> {
         return new Promise(async (resolve, reject) => {
             try {
-                const page = await this.load(query, options || {});
+                options = { ...options, _debugid: this.getDebugID() };
+
+                const page = await this.load(query, options);
                 const data = await this.extractRenderData(page);
                 const results = await this.parseData(data);
+
+                /**
+                 * This will create 3 files in the debugger directory.
+                 * It's not recommended to leave this enabled. Only when asked by DrKain via GitHub
+                 */
+                if (this.debug && this.debugger.enabled && options._debugid) {
+                    this.debugger.dump(options._debugid, 'vids', results);
+                    this.debugger.dump(options._debugid, 'opts', { query, ...options });
+                    this.debugger.dump(options._debugid, 'page', page);
+                }
+
                 resolve(results);
             } catch (e) {
                 reject(e);
