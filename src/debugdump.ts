@@ -8,7 +8,7 @@ export class DebugDumper {
     public enabled = false;
     private dir = '';
 
-    constructor() { }
+    constructor() {}
 
     /**
      * Set the directory to dump debug files into. You can zip this directory and include it

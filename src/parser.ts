@@ -16,10 +16,7 @@ const getChannelBadges = (video: any) => {
  */
 const isVerified = (video: any) => {
     const badges = getChannelBadges(video);
-    return (
-        badges.includes('BADGE_STYLE_TYPE_VERIFIED_ARTIST') ??
-        badges.includes('BADGE_STYLE_TYPE_VERIFIED')
-    );
+    return badges.includes('BADGE_STYLE_TYPE_VERIFIED_ARTIST') ?? badges.includes('BADGE_STYLE_TYPE_VERIFIED');
 };
 
 /**
@@ -27,9 +24,10 @@ const isVerified = (video: any) => {
  * @param channel Channel Renderer
  */
 const getChannelLink = (channel: any) => {
-    return 'https://www.youtube.com' + (
-        channel.navigationEndpoint.browseEndpoint.canonicalBaseUrl ||
-        channel.navigationEndpoint.commandMetadata.webCommandMetadata.url
+    return (
+        'https://www.youtube.com' +
+        (channel.navigationEndpoint.browseEndpoint.canonicalBaseUrl ||
+            channel.navigationEndpoint.commandMetadata.webCommandMetadata.url)
     );
 };
 
@@ -63,7 +61,7 @@ const parseDuration = (text: string): number => {
  * @param video Video Renderer
  */
 const getUploadDate = (video: any) => {
-    return video.publishedTimeText ? video.publishedTimeText.simpleText : '';
+    return (video.publishedTimeText ? video.publishedTimeText.simpleText : '').replace('Streamed', '').trim();
 };
 
 /**
@@ -72,7 +70,7 @@ const getUploadDate = (video: any) => {
  */
 const getWatchers = (result: any) => {
     try {
-        return +(result.viewCountText.runs[0].text.replace(/[^0-9]/g, ''));
+        return +result.viewCountText.runs[0].text.replace(/[^0-9]/g, '');
     } catch (e) {
         return 0;
     }
@@ -84,7 +82,7 @@ const getWatchers = (result: any) => {
  */
 const getViews = (video: any) => {
     try {
-        return +(video.viewCountText.simpleText.replace(/[^0-9]/g, ''));
+        return +video.viewCountText.simpleText.replace(/[^0-9]/g, '');
     } catch (e) {
         return 0;
     }
@@ -96,10 +94,7 @@ const getViews = (video: any) => {
  */
 const getChannelThumbnail = (video: any) => {
     try {
-        return video.channelThumbnailSupportedRenderers
-            .channelThumbnailWithLinkRenderer
-            .thumbnail
-            .thumbnails[0].url;
+        return video.channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails[0].url;
     } catch (e) {
         // Return a default youtube avatar when the channel thumbnail is not available (in playlists)
         return `https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png`;
@@ -210,7 +205,7 @@ export const getPlaylistData = (result: any): Playlist => {
     result.videos.map((video: any) => {
         try {
             cvideos.push(getPlaylistVideo(video['childVideoRenderer']));
-        } catch (e) { }
+        } catch (e) {}
     });
 
     return {
