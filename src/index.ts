@@ -10,7 +10,7 @@ class Youtube {
     public debug = false;
     public debugger: DebugDumper = new DebugDumper();
 
-    constructor() { }
+    constructor() {}
 
     private getURL(query: string, options: SearchOptions): string {
         const url = new URL('/results', 'https://www.youtube.com');
@@ -40,9 +40,7 @@ class Youtube {
 
                 let render = null;
                 let contents = [];
-                const primary = JSON.parse(data).contents
-                    .twoColumnSearchResultsRenderer
-                    .primaryContents;
+                const primary = JSON.parse(data).contents.twoColumnSearchResultsRenderer.primaryContents;
 
                 // The renderer we want. This should contain all search result information
                 if (primary['sectionListRenderer']) {
@@ -53,20 +51,24 @@ class Youtube {
                         return (
                             item.itemSectionRenderer &&
                             item.itemSectionRenderer.contents &&
-                            item.itemSectionRenderer.contents.filter((c: any) => c['videoRenderer'] || c['playlistRenderer']).length
+                            item.itemSectionRenderer.contents.filter(
+                                (c: any) => c['videoRenderer'] || c['playlistRenderer']
+                            ).length
                         );
-                    }).shift();
+                    });
 
-                    contents = render.itemSectionRenderer.contents;
+                    if (render.length) contents = render.shift().itemSectionRenderer.contents;
                 }
 
                 // YouTube occasionally switches to a rich grid renderer.
                 // More testing will be needed to see how different this is from sectionListRenderer
                 if (primary['richGridRenderer']) {
                     if (this.debug) console.log('[ytInitialData] richGridRenderer');
-                    contents = primary.richGridRenderer.contents.filter((item: any) => {
-                        return item.richItemRenderer && item.richItemRenderer.content;
-                    }).map((item: any) => item.richItemRenderer.content);
+                    contents = primary.richGridRenderer.contents
+                        .filter((item: any) => {
+                            return item.richItemRenderer && item.richItemRenderer.content;
+                        })
+                        .map((item: any) => item.richItemRenderer.content);
                 }
 
                 resolve(contents);
@@ -90,7 +92,6 @@ class Youtube {
                 };
 
                 data.forEach((item: any) => {
-
                     if (item['videoRenderer'] && item['videoRenderer']['lengthText']) {
                         try {
                             const result: Video = getVideoData(item['videoRenderer']);
@@ -137,10 +138,10 @@ class Youtube {
         if (this.debug) console.log(url);
 
         return new Promise((resolve, reject) => {
-            get(url, (options.requestOptions || {}), res => {
+            get(url, options.requestOptions || {}, (res) => {
                 res.setEncoding('utf8');
                 let data = '';
-                res.on('data', chunk => data += chunk);
+                res.on('data', (chunk) => (data += chunk));
                 res.on('end', () => resolve(data));
             }).on('error', reject);
         });
