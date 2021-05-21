@@ -105,8 +105,12 @@ class Youtube {
 
                 data.forEach((item: any) => {
                     if (item['channelRenderer']) {
-                        const result: ChannelResult = getChannelRenderData(item['channelRenderer']);
-                        results.channels.push(result);
+                        try {
+                            const result: ChannelResult = getChannelRenderData(item['channelRenderer']);
+                            results.channels.push(result);
+                        } catch (e) {
+                            if (this.debug) console.log(e);
+                        }
                     }
 
                     if (item['videoRenderer'] && item['videoRenderer']['lengthText']) {

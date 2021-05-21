@@ -48,6 +48,7 @@ export interface Results {
 }
 
 export interface Channel {
+    id: string;
     name: string;
     link: string;
     verified: boolean;

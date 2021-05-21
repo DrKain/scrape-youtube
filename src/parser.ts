@@ -24,11 +24,7 @@ const isVerified = (video: any) => {
  * @param channel Channel Renderer
  */
 const getChannelLink = (channel: any) => {
-    return (
-        'https://www.youtube.com' +
-        (channel.navigationEndpoint.browseEndpoint.canonicalBaseUrl ||
-            channel.navigationEndpoint.commandMetadata.webCommandMetadata.url)
-    );
+    return 'https://www.youtube.com/channel/' + channel.navigationEndpoint.browseEndpoint.browseId;
 };
 
 /**
@@ -167,6 +163,7 @@ export const getChannelRenderData = (channel: any): ChannelResult => {
 export const getChannelData = (video: any): Channel => {
     const channel = (video.ownerText || video.longBylineText)['runs'][0];
     return {
+        id: channel.navigationEndpoint.browseEndpoint.browseId,
         name: channel.text,
         link: getChannelLink(channel),
         verified: isVerified(video),

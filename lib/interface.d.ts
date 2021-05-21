@@ -37,6 +37,7 @@ export interface Results {
     channels: ChannelResult[];
 }
 export interface Channel {
+    id: string;
     name: string;
     link: string;
     verified: boolean;
