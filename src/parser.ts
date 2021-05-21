@@ -115,7 +115,9 @@ const getSubscriberCount = (channel: any) => {
  */
 const getChannelThumbnail = (video: any) => {
     try {
-        return video.channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails[0].url;
+        const thumbRenders = video.channelThumbnailSupportedRenderers;
+        const url = thumbRenders.channelThumbnailWithLinkRenderer.thumbnail.thumbnails[0].url;
+        return url.split('=').shift() + '=s0?imgmax=0';
     } catch (e) {
         // Return a default youtube avatar when the channel thumbnail is not available (in playlists)
         return `https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png`;
@@ -123,6 +125,9 @@ const getChannelThumbnail = (video: any) => {
 };
 
 const getVideoThumbnail = (id: string) => {
+    // This doesn't always work, unfortunately
+    // return `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+
     return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 };
 
