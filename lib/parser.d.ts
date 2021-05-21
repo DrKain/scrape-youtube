@@ -1,4 +1,9 @@
-import { Channel, LiveStream, Playlist, Video } from './interface';
+import { Channel, ChannelResult, LiveStream, Playlist, Video } from './interface';
+/**
+ * Extract channel render data from the search results
+ * @param channel Channel Renderer
+ */
+export declare const getChannelRenderData: (channel: any) => ChannelResult;
 /**
  * Fetch basic information about the channel
  * @param video Video Renderer

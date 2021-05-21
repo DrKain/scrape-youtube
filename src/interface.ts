@@ -44,6 +44,7 @@ export interface Results {
     videos: Video[];
     playlists: Playlist[];
     streams: LiveStream[];
+    channels: ChannelResult[];
 }
 
 export interface Channel {
@@ -51,6 +52,13 @@ export interface Channel {
     link: string;
     verified: boolean;
     thumbnail: string;
+}
+
+export interface ChannelResult extends Channel {
+    id: string;
+    description: string;
+    subscribers: string;
+    videoCount: number;
 }
 
 export interface PlaylistVideo {

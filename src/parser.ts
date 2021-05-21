@@ -1,5 +1,5 @@
 // This file contains all the functions used in extracting information from the video renderer objects
-import { Channel, LiveStream, Playlist, PlaylistVideo, Result, Video } from './interface';
+import { Channel, ChannelResult, LiveStream, Playlist, PlaylistVideo, Result, Video } from './interface';
 
 /**
  * Fetch all badges the channel has
@@ -89,6 +89,31 @@ const getViews = (video: any) => {
 };
 
 /**
+ * Get the video count from the channel renderer
+ * @param channel Channel Renderer
+ */
+const getVideoCount = (channel: any) => {
+    try {
+        return +channel.videoCountText.runs[0].text.replace(/[^0-9]/g, '');
+    } catch (e) {
+        return 0;
+    }
+};
+
+/**
+ * Attempt to get the subscriber count.
+ * This can end up being a string like 50k
+ * @param channel Channel Renderer
+ */
+const getSubscriberCount = (channel: any) => {
+    try {
+        return channel.subscriberCountText.simpleText.split(' ').shift();
+    } catch (e) {
+        return '0';
+    }
+};
+
+/**
  * Attempt to fetch the channel thumbnail
  * @param video Channel Renderer
  */
@@ -112,6 +137,27 @@ const getVideoThumbnail = (id: string) => {
  */
 const getLink = (id: string, playlist = false) => {
     return (playlist ? 'https://www.youtube.com/playlist?list=' : 'https://youtu.be/') + id;
+};
+
+const getBiggestThumbnail = (thumbnails: any) => {
+    return 'https:' + thumbnails.shift().url.split('=').shift() + '=s0?imgmax=0';
+};
+
+/**
+ * Extract channel render data from the search results
+ * @param channel Channel Renderer
+ */
+export const getChannelRenderData = (channel: any): ChannelResult => {
+    return {
+        id: channel.channelId,
+        name: channel.title.simpleText,
+        link: 'https://www.youtube.com/channel/' + channel.channelId,
+        verified: isVerified(channel),
+        thumbnail: getBiggestThumbnail(channel.thumbnail.thumbnails),
+        description: compress(channel.descriptionSnippet),
+        videoCount: getVideoCount(channel),
+        subscribers: getSubscriberCount(channel)
+    };
 };
 
 /**

@@ -1,5 +1,16 @@
-import { ResultFilter, ResultType, SearchOptions, Video, Playlist, Results, LiveStream, DebugData } from './interface';
-import { getStreamData, getPlaylistData, getVideoData } from './parser';
+import {
+    ResultFilter,
+    ResultType,
+    SearchOptions,
+    Video,
+    Playlist,
+    Results,
+    LiveStream,
+    DebugData,
+    Channel,
+    ChannelResult
+} from './interface';
+import { getStreamData, getPlaylistData, getVideoData, getChannelData, getChannelRenderData } from './parser';
 import { get } from 'https';
 import { DebugDumper } from './debugdump';
 
@@ -52,7 +63,7 @@ class Youtube {
                             item.itemSectionRenderer &&
                             item.itemSectionRenderer.contents &&
                             item.itemSectionRenderer.contents.filter(
-                                (c: any) => c['videoRenderer'] || c['playlistRenderer']
+                                (c: any) => c['videoRenderer'] || c['playlistRenderer'] || c['channelRenderer']
                             ).length
                         );
                     });
@@ -88,10 +99,16 @@ class Youtube {
                 const results: Results = {
                     videos: [],
                     playlists: [],
-                    streams: []
+                    streams: [],
+                    channels: []
                 };
 
                 data.forEach((item: any) => {
+                    if (item['channelRenderer']) {
+                        const result: ChannelResult = getChannelRenderData(item['channelRenderer']);
+                        results.channels.push(result);
+                    }
+
                     if (item['videoRenderer'] && item['videoRenderer']['lengthText']) {
                         try {
                             const result: Video = getVideoData(item['videoRenderer']);
