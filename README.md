@@ -29,7 +29,7 @@ youtube.search('Short Change Hero').then((results) => {
 
 #### Custom Types
 
-Supported types are: `video`, `live`, `movie`, `any` and `playlist`
+Supported types are: `video`, `live`, `movie`, `channel`, `playlist` and `any`
 
 ```javascript
 youtube.search('lofi hip hop beats to relax/study to', { type: 'live' }).then((results) => {
