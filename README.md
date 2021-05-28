@@ -45,18 +45,19 @@ This is the structure of a single video result. The search function will return 
 {
     "id": "lkvScx3Po8I",
     "title": "The Heavy - Short Change Hero",
-    "link": "https://www.youtube.com/watch?v=lkvScx3Po8I",
-    "description": "... long description ...",
+    "link": "https://youtu.be/lkvScx3Po8I",
     "thumbnail": "https://i.ytimg.com/vi/lkvScx3Po8I/hqdefault.jpg",
     "channel": {
+        "id": "UC5g2uRFlAhGAZ0vFQPE0k3Q",
         "name": "Magloire Lamine",
-        "link": "https://youtube.com/user/TENESANGO",
+        "link": "https://www.youtube.com/channel/UC5g2uRFlAhGAZ0vFQPE0k3Q",
         "verified": false,
-        "thumbnail": "https://yt3.ggpht.com/a/AATXAJz3kOe_LDvhRWpQLu1wHb5xU7HNOKvpKQnLQA=s88-c-k-c0xffffffff-no-rj-mo"
+        "thumbnail": "https://yt3.ggpht.com/ytc/AAUvwnh3gRpzNqa02vyPn9yMnnlllHM-N32Em1h0nyQedA=s0?imgmax=0"
     },
-    "views": 7960221,
-    "duration": 238,
-    "uploaded": "6 years ago"
+    "description": "",
+    "views": 10090187,
+    "uploaded": "7 years ago",
+    "duration": 238
 }
 ```
 
@@ -71,12 +72,13 @@ This is the structure of a single live stream result.
     "link": "https://youtu.be/5qap5aO4i9A",
     "thumbnail": "https://i.ytimg.com/vi/5qap5aO4i9A/hqdefault.jpg",
     "channel": {
-        "name": "ChilledCow",
+        "id": "UCSJ4gkVC6NrvII8umztf0Ow",
+        "name": "Lofi Girl",
         "link": "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow",
         "verified": false,
-        "thumbnail": "https://yt3.ggpht.com/a-/AOh14Gj1ME7zG6pJG6689WU13fYHmafnUGK7IMeWIg=s68-c-k-c0x00ffffff-no-rj-mo"
+        "thumbnail": "https://yt3.ggpht.com/ytc/AAUvwnhGIymQGp3jRMECbTCBSRAUqi8sKbATpWowQG44CA=s0?imgmax=0"
     },
-    "watching": 34576
+    "watching": 36682
 }
 ```
 
@@ -91,6 +93,7 @@ This is the structure of a single playlist result. Please note that the "videos"
     "link": "https://www.youtube.com/playlist?list=PLEPHBRITc9qNl4G4IaZPGsx0nueg6d_6N",
     "thumbnail": "https://i.ytimg.com/vi/yoaNCEE4QLY/hqdefault.jpg",
     "channel": {
+        "id": "UCUDT_zh1GA8qfisSZXemt6Q",
         "name": "Fredericia's Channel",
         "link": "https://www.youtube.com/channel/UCUDT_zh1GA8qfisSZXemt6Q",
         "verified": false,
@@ -102,14 +105,14 @@ This is the structure of a single playlist result. Please note that the "videos"
             "id": "yoaNCEE4QLY",
             "title": "J S Bach Jesu Joy of Man's Desiring chamber orchestra version",
             "link": "https://youtu.be/yoaNCEE4QLY",
-            "duration": 211,
+            "duration": 210,
             "thumbnail": "https://i.ytimg.com/vi/yoaNCEE4QLY/hqdefault.jpg"
         },
         {
             "id": "mGV_oiAcmaY",
             "title": "Bach Violin Concerto in D Minor",
             "link": "https://youtu.be/mGV_oiAcmaY",
-            "duration": 381,
+            "duration": 380,
             "thumbnail": "https://i.ytimg.com/vi/mGV_oiAcmaY/hqdefault.jpg"
         }
     ]
@@ -154,6 +157,14 @@ youtube.search('Poets of the fall', {
 });
 ```
 
+### Extra Info
+
+You can use [ytdl-core](https://github.com/fent/node-ytdl-core) by [fent](https://github.com/fent) to load extra information like exact upload dates, full descriptions, like/dislike ratio, video ads ect. Please see [this](https://github.com/DrKain/scrape-youtube/wiki/Extra-Info) example in the wiki to see how.
+
+### Discord Bots
+
+See [this](https://github.com/DrKain/scrape-youtube/wiki/Discord-Bot) example on how to use this in a Discord Bot. Voice channel example coming soon.
+
 ### Debugging
 
 In some cases advanced debugging might be required for fixing issues on GitHub.  
@@ -169,5 +180,6 @@ youtube.debugger.setDirectory('path/to/somewhere'); // Directory to write the du
 #### Notes
 
 -   Multiple pages can not be loaded. YouTube changed how loading works so this is currently not available.
--   If this package stops working please create an issue on GitHub so I can fix it as soon as possible.
+-   This package will only make a single request per search.
+-   If this package stops working please create an [issue on GitHub](https://github.com/DrKain/scrape-youtube/issues) so I can fix it as soon as possible.
 -   If this readme is lacking, Please feel free to create a PR fixing or adding any information you feel would help. I gladly accept any helpful pull requests or contributions.
