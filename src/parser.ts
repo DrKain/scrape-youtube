@@ -110,6 +110,35 @@ const getSubscriberCount = (channel: any) => {
 };
 
 /**
+ * Convert subscriber count to number
+ * @param channel Channel Renderer
+ * @returns number
+ */
+const convertSubs = (channel: any): number => {
+    let count = channel.subscriberCountText.simpleText.split(' ').shift();
+
+    // If there's no K, M or B at the end.
+    if (!isNaN(+count)) return +count;
+
+    let char = count.slice(-1);
+    let slicedCount = Number(count.slice(0, -1));
+
+    switch (char.toLowerCase()) {
+        case 'k':
+            slicedCount *= 1000;
+            break;
+        case 'k':
+            slicedCount *= 1e6;
+            break;
+        case 'b':
+            slicedCount *= 1e9;
+            break;
+    }
+
+    return ~~slicedCount;
+};
+
+/**
  * Attempt to fetch the channel thumbnail
  * @param video Channel Renderer
  */
@@ -157,7 +186,8 @@ export const getChannelRenderData = (channel: any): ChannelResult => {
         thumbnail: getBiggestThumbnail(channel.thumbnail.thumbnails),
         description: compress(channel.descriptionSnippet),
         videoCount: getVideoCount(channel),
-        subscribers: getSubscriberCount(channel)
+        subscribers: getSubscriberCount(channel),
+        subscriberCount: convertSubs(channel)
     };
 };
 
