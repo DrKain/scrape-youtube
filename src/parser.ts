@@ -115,12 +115,12 @@ const getSubscriberCount = (channel: any) => {
  * @returns number
  */
 const convertSubs = (channel: any): number => {
-    let count = channel.subscriberCountText.simpleText.split(' ').shift();
+    const count = channel.subscriberCountText.simpleText.split(' ').shift();
 
     // If there's no K, M or B at the end.
     if (!isNaN(+count)) return +count;
 
-    let char = count.slice(-1);
+    const char = count.slice(-1);
     let slicedCount = Number(count.slice(0, -1));
 
     switch (char.toLowerCase()) {

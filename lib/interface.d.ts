@@ -47,6 +47,7 @@ export interface ChannelResult extends Channel {
     id: string;
     description: string;
     subscribers: string;
+    subscriberCount: number;
     videoCount: number;
 }
 export interface PlaylistVideo {
