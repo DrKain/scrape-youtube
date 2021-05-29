@@ -103,11 +103,63 @@ const getVideoCount = (channel: any) => {
  */
 const getSubscriberCount = (channel: any) => {
     try {
-        return channel.subscriberCountText.simpleText.split(' ').shift();
+        let count = channel.subscriberCountText.simpleText.split(' ').shift();
+        let lastChar = count.slice(-1);
+        if (parseInt(lastChar) === NaN) {
+            // If there's no K, M or B at the end.
+            return count;
+        }
+        // Converting it to integer.
+        // If there is a K or something, we'll multiply the count with respective numbers.
+        // Slicing off the character denotion.
+        let slicedCount = Number(count.slice(0, -1));
+        switch (lastChar) {
+            case 'K':
+                slicedCount *= 1000;
+                break;
+            case 'M':
+                slicedCount *= 1000000;
+                break;
+            case 'B':
+                slicedCount *= 1000000000;
+        }
+        // Returning updated count;
+        return slicedCount;
+        
     } catch (e) {
         return '0';
     }
 };
+
+/* Or you can use this function for simplicity. Put it in an appropriate location and call it.
+function converter(count) {
+    console.log('I am running', count);
+    let lastChar = count.slice(-1);
+    if (parseInt(lastChar) === NaN) {
+        // If there's no K, M or B at the end.
+        console.log("could not find anything");
+        return count;
+    }
+    // Converting it to integer.
+    // If there is a K or something, we'll multiply the count with respective numbers.
+    // Slicing off the character denotion.
+    let slicedCount = Number(count.slice(0, -1));
+    console.log(lastChar);
+    switch (lastChar) {
+        case 'K':
+            slicedCount *= 1000;
+            break;
+        case 'M':
+            slicedCount *= 1000000;
+            break;
+        case 'B':
+            slicedCount *= 1000000000;
+    }
+    // Returning updated count;
+    console.log(slicedCount);
+    return slicedCount;
+}
+ */
 
 /**
  * Attempt to fetch the channel thumbnail
