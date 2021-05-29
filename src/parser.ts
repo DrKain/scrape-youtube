@@ -103,63 +103,40 @@ const getVideoCount = (channel: any) => {
  */
 const getSubscriberCount = (channel: any) => {
     try {
-        let count = channel.subscriberCountText.simpleText.split(' ').shift();
-        let lastChar = count.slice(-1);
-        if (parseInt(lastChar) === NaN) {
-            // If there's no K, M or B at the end.
-            return count;
-        }
-        // Converting it to integer.
-        // If there is a K or something, we'll multiply the count with respective numbers.
-        // Slicing off the character denotion.
-        let slicedCount = Number(count.slice(0, -1));
-        switch (lastChar) {
-            case 'K':
-                slicedCount *= 1000;
-                break;
-            case 'M':
-                slicedCount *= 1000000;
-                break;
-            case 'B':
-                slicedCount *= 1000000000;
-        }
-        // Returning updated count;
-        return slicedCount;
-        
+        return channel.subscriberCountText.simpleText.split(' ').shift();
     } catch (e) {
         return '0';
     }
 };
 
-/* Or you can use this function for simplicity. Put it in an appropriate location and call it.
-function converter(count) {
-    console.log('I am running', count);
-    let lastChar = count.slice(-1);
-    if (parseInt(lastChar) === NaN) {
-        // If there's no K, M or B at the end.
-        console.log("could not find anything");
-        return count;
-    }
-    // Converting it to integer.
-    // If there is a K or something, we'll multiply the count with respective numbers.
-    // Slicing off the character denotion.
+/**
+ * Convert subscriber count to number
+ * @param channel Channel Renderer
+ * @returns number
+ */
+const convertSubs = (channel: any): number => {
+    let count = channel.subscriberCountText.simpleText.split(' ').shift();
+
+    // If there's no K, M or B at the end.
+    if (!isNaN(+count)) return +count;
+
+    let char = count.slice(-1);
     let slicedCount = Number(count.slice(0, -1));
-    console.log(lastChar);
-    switch (lastChar) {
-        case 'K':
+
+    switch (char.toLowerCase()) {
+        case 'k':
             slicedCount *= 1000;
             break;
-        case 'M':
-            slicedCount *= 1000000;
+        case 'k':
+            slicedCount *= 1e6;
             break;
-        case 'B':
-            slicedCount *= 1000000000;
+        case 'b':
+            slicedCount *= 1e9;
+            break;
     }
-    // Returning updated count;
-    console.log(slicedCount);
-    return slicedCount;
-}
- */
+
+    return ~~slicedCount;
+};
 
 /**
  * Attempt to fetch the channel thumbnail
@@ -209,7 +186,8 @@ export const getChannelRenderData = (channel: any): ChannelResult => {
         thumbnail: getBiggestThumbnail(channel.thumbnail.thumbnails),
         description: compress(channel.descriptionSnippet),
         videoCount: getVideoCount(channel),
-        subscribers: getSubscriberCount(channel)
+        subscribers: getSubscriberCount(channel),
+        subscriberCount: convertSubs(channel)
     };
 };
 

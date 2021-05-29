@@ -134,7 +134,8 @@ The thumbnail is converted to the largest available image
     "thumbnail": "https://yt3.ggpht.com/ytc/AAUvwniodp2yJktm7UlbHChoA_yqHNDEAUUZlJOKj6Ltxw=s0?imgmax=0",
     "description": "Welcome to the official Poets of the Fall YouTube channel! Finnish rockers Poets of the Fall - singer Marko, guitarist Olli and ...",
     "videoCount": 98,
-    "subscribers": "381K"
+    "subscribers": "381K",
+    "subscriberCount": 381000
 }
 ```
 
