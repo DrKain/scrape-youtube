@@ -14,7 +14,7 @@ This package is updated often to fix minor problems or parsing issues. Please en
 #### Require
 
 ```javascript
-import youtube from 'scrape-youtube';
+import { youtube } from 'scrape-youtube';
 // const youtube = require('scrape-youtube').default;
 ```
 

@@ -199,5 +199,4 @@ class Youtube {
     }
 }
 
-const youtube = new Youtube();
-export default youtube;
+export const youtube = new Youtube();

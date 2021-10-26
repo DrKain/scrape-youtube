@@ -23,5 +23,5 @@ declare class Youtube {
     private getDebugID;
     search(query: string, options?: SearchOptions): Promise<Results>;
 }
-declare const youtube: Youtube;
-export default youtube;
+export declare const youtube: Youtube;
+export {};
