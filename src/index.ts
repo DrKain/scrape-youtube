@@ -200,3 +200,4 @@ class Youtube {
 }
 
 export const youtube = new Youtube();
+export const search = youtube.search;

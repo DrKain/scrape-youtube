@@ -24,4 +24,5 @@ declare class Youtube {
     search(query: string, options?: SearchOptions): Promise<Results>;
 }
 export declare const youtube: Youtube;
+export declare const search: (query: string, options?: SearchOptions) => Promise<Results>;
 export {};
