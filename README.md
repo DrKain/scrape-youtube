@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/npm/v/scrape-youtube.svg)](https://www.npmjs.com/package/scrape-youtube)
 [![Downloads](https://img.shields.io/npm/dt/scrape-youtube)](https://www.npmjs.com/package/scrape-youtube)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/DrKain/scrape-youtube#readme)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/DrKain/scrape-youtube/wiki)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/DrKain/scrape-youtube/graphs/commit-activity)
 [![License: MIT](https://img.shields.io/github/license/DrKain/scrape-youtube)](https://github.com/DrKain/scrape-youtube/blob/master/LICENSE)
 
