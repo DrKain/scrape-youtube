@@ -200,4 +200,6 @@ class Youtube {
 }
 
 export const youtube = new Youtube();
-export const search = youtube.search;
+export const search = (query: string, options: SearchOptions = {}): Promise<Results> => {
+    return youtube.search(query, options);
+};
