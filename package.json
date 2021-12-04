@@ -1,6 +1,6 @@
 {
     "name": "scrape-youtube",
-    "version": "2.1.12",
+    "version": "2.1.13",
     "description": "A lightning fast package to scrape YouTube search results. This was made for Discord Bots.",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
