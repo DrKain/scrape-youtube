@@ -55,16 +55,24 @@ You will need to fetch the SP parameter yourself from youtube. Please see [this 
 
 ## Request Options
 
-You can pass `{ requestOptions: { } }` as the second parameter to use custom headers, agents ect.  
+You can pass `{ requestOptions: { } }` as the second parameter to use a proxy, custom headers, agents ect.  
 See [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) for more information.
 
-```js
-youtube.search('Poets of the fall', {
+```ts
+const options = {
     requestOptions: {
-        headers: { 'Accept-Language': 'de' }
+        headers: {
+            Cookie: 'PREF=f2=8000000',
+            'Accept-Language': 'de'
+        }
     }
-});
+};
+
+youtube.search('Poets of the fall', options);
 ```
+
+For example, using `Cookie: 'PREF=f2=8000000'` will enable restricted mode to filter out videos with bad language or adult themes.  
+Additionally, `'Accept-Language': 'de'` will load YouTube in German, sometimes resulting in different titles and content responses.
 
 ## Extra Info
 
