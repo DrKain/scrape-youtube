@@ -258,6 +258,14 @@ const getPlaylistVideo = (child: any): PlaylistVideo => {
     };
 };
 
+const getVideoDescription = (result: any): string => {
+    try {
+        return compress(result.detailedMetadataSnippets[0]['snippetText']) || result.descriptionSnippet || '';
+    } catch (error) {
+        return '';
+    }
+};
+
 /**
  * Extract all information required for the "Video" result type
  * @param result Video Renderer
@@ -265,7 +273,7 @@ const getPlaylistVideo = (child: any): PlaylistVideo => {
 export const getVideoData = (result: any): Video => {
     return {
         ...getResultData(result),
-        description: compress(result.descriptionSnippet),
+        description: getVideoDescription(result),
         views: getViews(result),
         uploaded: getUploadDate(result),
         duration: result.lengthText ? parseDuration(result.lengthText.simpleText) : 0
