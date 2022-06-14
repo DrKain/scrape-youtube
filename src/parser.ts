@@ -115,27 +115,31 @@ const getSubscriberCount = (channel: any) => {
  * @returns number
  */
 const convertSubs = (channel: any): number => {
-    const count = channel.subscriberCountText.simpleText.split(' ').shift();
+    try {
+        const count = channel.subscriberCountText.simpleText.split(' ').shift();
 
-    // If there's no K, M or B at the end.
-    if (!isNaN(+count)) return +count;
+        // If there's no K, M or B at the end.
+        if (!isNaN(+count)) return +count;
 
-    const char = count.slice(-1);
-    let slicedCount = Number(count.slice(0, -1));
+        const char = count.slice(-1);
+        let slicedCount = Number(count.slice(0, -1));
 
-    switch (char.toLowerCase()) {
-        case 'k':
-            slicedCount *= 1000;
-            break;
-        case 'k':
-            slicedCount *= 1e6;
-            break;
-        case 'b':
-            slicedCount *= 1e9;
-            break;
+        switch (char.toLowerCase()) {
+            case 'k':
+                slicedCount *= 1000;
+                break;
+            case 'k':
+                slicedCount *= 1e6;
+                break;
+            case 'b':
+                slicedCount *= 1e9;
+                break;
+        }
+
+        return ~~slicedCount;
+    } catch (error) {
+        return 0;
     }
-
-    return ~~slicedCount;
 };
 
 /**
