@@ -80,6 +80,9 @@ You can use [ytdl-core](https://github.com/fent/node-ytdl-core) by [fent](https:
 full descriptions, like/dislike ratio, video ads ect.  
 Please see [this](https://github.com/DrKain/scrape-youtube/wiki/Extra-Info) example in the wiki to see how.
 
+## Subscriber count
+As mentioned in issue [#57](https://github.com/DrKain/scrape-youtube/issues/57) some channels appear to have the subscriber count hidden. In this case the package will default to 0.
+
 ## Debugging
 
 In some cases advanced debugging might be required for fixing issues on GitHub.  
