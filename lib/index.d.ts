@@ -1,11 +1,10 @@
 import { SearchOptions, Results } from './interface';
-import { DebugDumper } from './debugdump';
+export * from './interface';
 declare class Youtube {
     /**
      * Enable debugging for extra information during each search
      */
     debug: boolean;
-    debugger: DebugDumper;
     constructor();
     private getURL;
     private extractRenderData;
@@ -25,4 +24,3 @@ declare class Youtube {
 }
 export declare const youtube: Youtube;
 export declare const search: (query: string, options?: SearchOptions) => Promise<Results>;
-export {};
