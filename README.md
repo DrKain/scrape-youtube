@@ -24,6 +24,8 @@ youtube.search('Short Change Hero').then((results) => {
     // Unless you specify a custom type you will only receive 'video' results
     console.log(results.videos);
 });
+// or
+const { videos } = await youtube.search('Short Change Hero');
 ```
 
 ## Custom Types
