@@ -128,7 +128,7 @@ const convertSubs = (channel: any): number => {
             case 'k':
                 slicedCount *= 1000;
                 break;
-            case 'k':
+            case 'm':
                 slicedCount *= 1e6;
                 break;
             case 'b':
