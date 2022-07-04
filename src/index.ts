@@ -10,6 +10,7 @@ import {
 } from './interface';
 import { getStreamData, getPlaylistData, getVideoData, getChannelData, getChannelRenderData } from './parser';
 import { get } from 'https';
+export * from './interface';
 
 class Youtube {
     /**
