@@ -6,20 +6,16 @@ import {
     Playlist,
     Results,
     LiveStream,
-    DebugData,
-    Channel,
     ChannelResult
 } from './interface';
 import { getStreamData, getPlaylistData, getVideoData, getChannelData, getChannelRenderData } from './parser';
 import { get } from 'https';
-import { DebugDumper } from './debugdump';
 
 class Youtube {
     /**
      * Enable debugging for extra information during each search
      */
     public debug = false;
-    public debugger: DebugDumper = new DebugDumper();
 
     constructor() {}
 
@@ -175,22 +171,9 @@ class Youtube {
     public search(query: string, options: SearchOptions = {}): Promise<Results> {
         return new Promise(async (resolve, reject) => {
             try {
-                options = { ...options, _debugid: this.getDebugID() };
-
                 const page = await this.load(query, options);
                 const data = await this.extractRenderData(page);
                 const results = await this.parseData(data);
-
-                /**
-                 * This will create 3 files in the debugger directory.
-                 * It's not recommended to leave this enabled. Only when asked by DrKain via GitHub
-                 */
-                if (this.debug && this.debugger.enabled && options._debugid) {
-                    this.debugger.dump(options._debugid, 'vids', results);
-                    this.debugger.dump(options._debugid, 'opts', { query, ...options });
-                    this.debugger.dump(options._debugid, 'page', page);
-                }
-
                 resolve(results);
             } catch (e) {
                 reject(e);
