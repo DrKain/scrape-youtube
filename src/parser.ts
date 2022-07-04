@@ -16,7 +16,7 @@ const getChannelBadges = (video: any) => {
  */
 const isVerified = (video: any) => {
     const badges = getChannelBadges(video);
-    return badges.includes('BADGE_STYLE_TYPE_VERIFIED_ARTIST') ?? badges.includes('BADGE_STYLE_TYPE_VERIFIED');
+    return badges.includes('BADGE_STYLE_TYPE_VERIFIED_ARTIST') || badges.includes('BADGE_STYLE_TYPE_VERIFIED');
 };
 
 /**
