@@ -85,18 +85,6 @@ Please see [this](https://github.com/DrKain/scrape-youtube/wiki/Extra-Info) exam
 ## Subscriber count
 As mentioned in issue [#57](https://github.com/DrKain/scrape-youtube/issues/57) some channels appear to have the subscriber count hidden. In this case the package will default to 0.
 
-## Debugging
-
-In some cases advanced debugging might be required for fixing issues on GitHub.  
-When enabled **each search** will create 3 files, please compress/zip and include with your issue.  
-**It's not recommended to use this unless requested specifically.**
-
-```javascript
-youtube.debug = true; // Enable regular debugging
-youtube.debugger.enabled = true; // Enable debug dumps
-youtube.debugger.setDirectory('path/to/somewhere'); // Directory to write the dumps
-```
-
 ## Quick Info
 
 -   Multiple pages currently can not be loaded. This may change in the future, but currently you will be limited to 20 results.
