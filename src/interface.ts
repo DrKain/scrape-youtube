@@ -23,9 +23,13 @@ export interface SearchOptions {
      */
     sp?: string;
     /**
-     * https://nodejs.org/api/http.html#http_http_request_options_callback
+     * @deprecated Use `request` instead
      */
     requestOptions?: RequestOptions;
+    /**
+     * https://nodejs.org/api/http.html#http_http_request_options_callback
+     */
+    request?: RequestOptions;
 }
 
 export const ResultFilter: { [key in ResultType]: string } = {

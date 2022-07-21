@@ -8,7 +8,7 @@ import {
     LiveStream,
     ChannelResult
 } from './interface';
-import { getStreamData, getPlaylistData, getVideoData, getChannelData, getChannelRenderData } from './parser';
+import { getStreamData, getPlaylistData, getVideoData, getChannelRenderData } from './parser';
 import { get } from 'https';
 export * from './interface';
 import { parse } from 'url';
@@ -156,8 +156,10 @@ class Youtube {
         const url = this.getURL(query, options);
         if (this.debug) console.log(url);
 
+        const request = options.request || {};
+
         return new Promise((resolve, reject) => {
-            get(Object.assign(parse(url), options), (res: any) => {
+            get(Object.assign(parse(url), request), (res: any) => {
                 res.setEncoding('utf8');
                 let data = '';
                 res.on('data', (chunk: any) => (data += chunk));
@@ -166,11 +168,8 @@ class Youtube {
         });
     }
 
-    private getDebugID(): string {
-        return `${Math.random()}`.replace('.', '');
-    }
-
     public search(query: string, options: SearchOptions = {}): Promise<Results> {
+        if (options.requestOptions) options.request = options.requestOptions;
         return new Promise(async (resolve, reject) => {
             try {
                 const page = await this.load(query, options);

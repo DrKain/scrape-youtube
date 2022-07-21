@@ -19,7 +19,6 @@ declare class Youtube {
      * @param options Search options
      */
     private load;
-    private getDebugID;
     search(query: string, options?: SearchOptions): Promise<Results>;
 }
 export declare const youtube: Youtube;
