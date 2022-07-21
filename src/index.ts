@@ -11,6 +11,7 @@ import {
 import { getStreamData, getPlaylistData, getVideoData, getChannelData, getChannelRenderData } from './parser';
 import { get } from 'https';
 export * from './interface';
+import { parse } from 'url';
 
 class Youtube {
     /**
@@ -151,15 +152,15 @@ class Youtube {
      * @param query Search query
      * @param options Search options
      */
-    private load(query: string, options: SearchOptions): Promise<string> {
+    private load(query: string, options: SearchOptions = {}): Promise<string> {
         const url = this.getURL(query, options);
         if (this.debug) console.log(url);
 
         return new Promise((resolve, reject) => {
-            get(url, options.requestOptions || {}, (res) => {
+            get(Object.assign(parse(url), options), (res: any) => {
                 res.setEncoding('utf8');
                 let data = '';
-                res.on('data', (chunk) => (data += chunk));
+                res.on('data', (chunk: any) => (data += chunk));
                 res.on('end', () => resolve(data));
             }).on('error', reject);
         });
