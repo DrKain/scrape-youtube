@@ -5,6 +5,7 @@ declare class Youtube {
      * Enable debugging for extra information during each search
      */
     debug: boolean;
+    host: string;
     constructor();
     private getURL;
     private extractRenderData;

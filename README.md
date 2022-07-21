@@ -18,7 +18,7 @@ npm install scrape-youtube --save
 
 ```javascript
 import { youtube } from 'scrape-youtube';
-// const youtube = require('scrape-youtube');
+// const { youtube } = require('scrape-youtube');
 
 youtube.search('Short Change Hero').then((results) => {
     // Unless you specify a custom type you will only receive 'video' results
@@ -57,12 +57,13 @@ You will need to fetch the SP parameter yourself from youtube. Please see [this 
 
 ## Request Options
 
-You can pass `{ requestOptions: { } }` as the second parameter to use a proxy, custom headers, agents ect.  
+You can pass `{ request: { } }` as the second parameter to use a proxy, custom headers, agents ect.  
 See [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) for more information.
 
 ```ts
 const options = {
-    requestOptions: {
+    type: 'video',
+    request: {
         headers: {
             Cookie: 'PREF=f2=8000000',
             'Accept-Language': 'de'

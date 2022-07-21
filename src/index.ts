@@ -18,15 +18,17 @@ class Youtube {
      * Enable debugging for extra information during each search
      */
     public debug = false;
+    public host = 'https://www.youtube.com';
 
     constructor() {}
 
     private getURL(query: string, options: SearchOptions): string {
-        const url = new URL('/results', 'https://www.youtube.com');
+        const url = new URL('/results', this.host);
         let sp = ResultFilter[(options.type || 'video') as ResultType];
 
         url.search = new URLSearchParams({
-            search_query: query
+            search_query: query,
+            ...(options.params || {})
         }).toString();
 
         if (options.sp) sp = options.sp;

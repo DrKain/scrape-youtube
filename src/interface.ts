@@ -30,6 +30,7 @@ export interface SearchOptions {
      * https://nodejs.org/api/http.html#http_http_request_options_callback
      */
     request?: RequestOptions;
+    params?: { [key: string]: string };
 }
 
 export const ResultFilter: { [key in ResultType]: string } = {
