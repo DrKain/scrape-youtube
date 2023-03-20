@@ -1,30 +1,654 @@
-{
-    "id": "PLEPHBRITc9qNl4G4IaZPGsx0nueg6d_6N",
-    "title": "Johann Sebastian Bach Adagios for relaxation",
-    "link": "https://www.youtube.com/playlist?list=PLEPHBRITc9qNl4G4IaZPGsx0nueg6d_6N",
-    "thumbnail": "https://i.ytimg.com/vi/yoaNCEE4QLY/hqdefault.jpg",
+[
+  {
+    "id": "PL0ILEW7Puee34Winu4AFAUeLNMgAHBsAf",
+    "title": "The Most Relaxing Classical Music In The Universe",
+    "link": "https://www.youtube.com/playlist?list=PL0ILEW7Puee34Winu4AFAUeLNMgAHBsAf",
+    "thumbnail": "https://i.ytimg.com/vi/RKexLWM33SI/hqdefault.jpg",
     "channel": {
-        "id": "UCUDT_zh1GA8qfisSZXemt6Q",
-        "name": "Fredericia's Channel",
-        "link": "https://www.youtube.com/channel/UCUDT_zh1GA8qfisSZXemt6Q",
-        "verified": false,
-        "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+      "id": "UCsx6vv8izcm9T857KduEcwA",
+      "name": "Craft Recordings",
+      "link": "https://www.youtube.com/@CraftRecordings",
+      "handle": "@CraftRecordings",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 30,
+    "videos": [
+      {
+        "id": "RKexLWM33SI",
+        "title": "Pachelbel: Canon In D",
+        "link": "https://youtu.be/RKexLWM33SI",
+        "duration": 377,
+        "durationString": "6:17",
+        "thumbnail": "https://i.ytimg.com/vi/RKexLWM33SI/hqdefault.jpg"
+      },
+      {
+        "id": "Grksm6zmZbc",
+        "title": "Mozart: Eine kleine Nachtmusik: Andante",
+        "link": "https://youtu.be/Grksm6zmZbc",
+        "duration": 353,
+        "durationString": "5:53",
+        "thumbnail": "https://i.ytimg.com/vi/Grksm6zmZbc/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PL5CoCfJuBPax1-CXn0xGPd3UHQfmOcQuB",
+    "title": "Classical Music for Relaxation: Mozart, Bach, Tchaikovsky...",
+    "link": "https://www.youtube.com/playlist?list=PL5CoCfJuBPax1-CXn0xGPd3UHQfmOcQuB",
+    "thumbnail": "https://i.ytimg.com/vi/2gIReqp0QZc/hqdefault.jpg",
+    "channel": {
+      "id": "UCJtwvgAhOv9rJyu1kTraz1A",
+      "name": "Emlyn Hamsley ",
+      "link": "https://www.youtube.com/@emlynhamsley",
+      "handle": "@emlynhamsley",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 28,
+    "videos": [
+      {
+        "id": "2gIReqp0QZc",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #6",
+        "link": "https://youtu.be/2gIReqp0QZc",
+        "duration": 3117,
+        "durationString": "51:57",
+        "thumbnail": "https://i.ytimg.com/vi/2gIReqp0QZc/hqdefault.jpg"
+      },
+      {
+        "id": "lBcGwmx3i9E",
+        "title": "Sleepy pinao music for insomniacs with us - Piano music Fleitz #1",
+        "link": "https://youtu.be/lBcGwmx3i9E",
+        "duration": 4573,
+        "durationString": "1:16:13",
+        "thumbnail": "https://i.ytimg.com/vi/lBcGwmx3i9E/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLauX1OLju8VgJ1-oBaBDGKZeAiFav-mAE",
+    "title": "The Best of Classical  Music in High Quality Sound to study, to work, to make sport or just to relax",
+    "link": "https://www.youtube.com/playlist?list=PLauX1OLju8VgJ1-oBaBDGKZeAiFav-mAE",
+    "thumbnail": "https://i.ytimg.com/vi/a-b6JgQa3EY/hqdefault.jpg",
+    "channel": {
+      "id": "UCbfgpmIrBi8vmeAbWTlqVwQ",
+      "name": "♫HQ Classical Music♫",
+      "link": "https://www.youtube.com/@TheHQclassicalmusic",
+      "handle": "@TheHQclassicalmusic",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 39,
+    "videos": [
+      {
+        "id": "a-b6JgQa3EY",
+        "title": "CHOPIN - Nocturne No 2 in E Flat Major Op 9 No 2 - Piano Classical Music HD",
+        "link": "https://youtu.be/a-b6JgQa3EY",
+        "duration": 272,
+        "durationString": "4:32",
+        "thumbnail": "https://i.ytimg.com/vi/a-b6JgQa3EY/hqdefault.jpg"
+      },
+      {
+        "id": "0DTZT-YvdCY",
+        "title": "CHOPIN - Ballade No. 1 in G minor, Op. 23 - Piano Classical Music HD",
+        "link": "https://youtu.be/0DTZT-YvdCY",
+        "duration": 614,
+        "durationString": "10:14",
+        "thumbnail": "https://i.ytimg.com/vi/0DTZT-YvdCY/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PL2788304DC59DBEB4",
+    "title": "Best-of Classical Music Playlist",
+    "link": "https://www.youtube.com/playlist?list=PL2788304DC59DBEB4",
+    "thumbnail": "https://i.ytimg.com/vi/P2l0lbn5TVg/hqdefault.jpg",
+    "channel": {
+      "id": "UCDnmAvQBlq0k7aDMPtPCEnQ",
+      "name": "TheFbiFilesRepeat",
+      "link": "https://www.youtube.com/@TheFbiFilesRepeat",
+      "handle": "@TheFbiFilesRepeat",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 38,
+    "videos": [
+      {
+        "id": "P2l0lbn5TVg",
+        "title": "Tchaikovsky - Piano Concerto No 1, B Flat Minor, Op 23 open - Best-of Classical Music",
+        "link": "https://youtu.be/P2l0lbn5TVg",
+        "duration": 251,
+        "durationString": "4:11",
+        "thumbnail": "https://i.ytimg.com/vi/P2l0lbn5TVg/hqdefault.jpg"
+      },
+      {
+        "id": "axb48YrvRmw",
+        "title": "Schubert - Marche Militaire Nr 1 (arr P Breiner) - Best-of Classical Music",
+        "link": "https://youtu.be/axb48YrvRmw",
+        "duration": 297,
+        "durationString": "4:57",
+        "thumbnail": "https://i.ytimg.com/vi/axb48YrvRmw/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLbwkfg2C-jnuyBJC6UxVSKL_hfQ9YsedR",
+    "title": "50 Relaxing Classics by Classic FM",
+    "link": "https://www.youtube.com/playlist?list=PLbwkfg2C-jnuyBJC6UxVSKL_hfQ9YsedR",
+    "thumbnail": "https://i.ytimg.com/vi/kg10XAlxY-k/hqdefault.jpg",
+    "channel": {
+      "id": "UCbViqlSj_laMzfgTbuph4qA",
+      "name": "Brian Newcombe",
+      "link": "https://www.youtube.com/@briannewcombe7050",
+      "handle": "@briannewcombe7050",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 50,
+    "videos": [
+      {
+        "id": "kg10XAlxY-k",
+        "title": "Beethoven: Piano Concerto No. 5 in E-Flat Major, Op. 73 \"Emperor\" - II. Adagio un poco mosso",
+        "link": "https://youtu.be/kg10XAlxY-k",
+        "duration": 497,
+        "durationString": "8:17",
+        "thumbnail": "https://i.ytimg.com/vi/kg10XAlxY-k/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLeCgNh_ukabpJNCp90vOyMe09avKzE-dz",
+    "title": "200 Hours With The Best Relaxing Classical Music Ever -  Relaxation Meditation Focus Reading PLAYLIST",
+    "link": "https://www.youtube.com/playlist?list=PLeCgNh_ukabpJNCp90vOyMe09avKzE-dz",
+    "thumbnail": "https://i.ytimg.com/vi/MkYSmIPBEGE/hqdefault.jpg",
+    "channel": {
+      "id": "UCvQI6QKWZ0wQuRx3JcIWfmQ",
+      "name": "Classical Tunes",
+      "link": "https://www.youtube.com/@ClassicalTunes",
+      "handle": "@ClassicalTunes",
+      "verified": true,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 560,
+    "videos": [
+      {
+        "id": "MkYSmIPBEGE",
+        "title": "The Best Relaxing Classical Music Ever By Bach - Relaxation Meditation Focus Reading",
+        "link": "https://youtu.be/MkYSmIPBEGE",
+        "duration": 6543,
+        "durationString": "1:49:03",
+        "thumbnail": "https://i.ytimg.com/vi/MkYSmIPBEGE/hqdefault.jpg"
+      },
+      {
+        "id": "QHl6wYCwlcQ",
+        "title": "The Best Relaxing Classical Music Ever By Mozart - Relaxation Meditation Reading Focus",
+        "link": "https://youtu.be/QHl6wYCwlcQ",
+        "duration": 8976,
+        "durationString": "2:29:36",
+        "thumbnail": "https://i.ytimg.com/vi/QHl6wYCwlcQ/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLDfXI_U4Ue-ED4-RuGPULPW6iM1Di-cBD",
+    "title": "8 HOURS Classical Music for Sleeping: Relaxing Piano Music Mozart, Debussy, Chopin, Schubert, Grieg",
+    "link": "https://www.youtube.com/playlist?list=PLDfXI_U4Ue-ED4-RuGPULPW6iM1Di-cBD",
+    "thumbnail": "https://i.ytimg.com/vi/HmWH4SNeVLQ/hqdefault.jpg",
+    "channel": {
+      "id": "UCR5Gaui5h6ZCTn_ZoAbS0jg",
+      "name": "Nobie Krauze ",
+      "link": "https://www.youtube.com/@nobiekrauze3249",
+      "handle": "@nobiekrauze3249",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 122,
+    "videos": [
+      {
+        "id": "HmWH4SNeVLQ",
+        "title": "Sleepy pinao music for insomniacs with us - Piano music Fleitz",
+        "link": "https://youtu.be/HmWH4SNeVLQ",
+        "duration": 2260,
+        "durationString": "37:40",
+        "thumbnail": "https://i.ytimg.com/vi/HmWH4SNeVLQ/hqdefault.jpg"
+      },
+      {
+        "id": "3Lfr3BhvkQY",
+        "title": "24 Hours Relaxing Music ♫ Relaxing Music Piano , Meditation Music, Sleep Music , Study",
+        "link": "https://youtu.be/3Lfr3BhvkQY",
+        "duration": 86400,
+        "durationString": "24:00:00",
+        "thumbnail": "https://i.ytimg.com/vi/3Lfr3BhvkQY/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PL31C98191D93F7680",
+    "title": "The Most Relaxing Classical Album In The World Ever",
+    "link": "https://www.youtube.com/playlist?list=PL31C98191D93F7680",
+    "thumbnail": "https://i.ytimg.com/vi/a24DppYpAVc/hqdefault.jpg",
+    "channel": {
+      "id": "UCr6qpOOXt1u69pswNOmyYZA",
+      "name": "Michalnej1",
+      "link": "https://www.youtube.com/@Michalnej1",
+      "handle": "@Michalnej1",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 25,
+    "videos": [
+      {
+        "id": "a24DppYpAVc",
+        "title": "♥ \"Peer Gynt, Op.23 - Morning\"",
+        "link": "https://youtu.be/a24DppYpAVc",
+        "duration": 271,
+        "durationString": "4:31",
+        "thumbnail": "https://i.ytimg.com/vi/a24DppYpAVc/hqdefault.jpg"
+      },
+      {
+        "id": "FwWL8Y-qsJg",
+        "title": "Bach: Cantata, BWV 147, Jesu, Joy of Man's Desiring",
+        "link": "https://youtu.be/FwWL8Y-qsJg",
+        "duration": 224,
+        "durationString": "3:44",
+        "thumbnail": "https://i.ytimg.com/vi/FwWL8Y-qsJg/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLfEvA3-WESDVNW2kfXfZlMrirZynsw0Az",
+    "title": "Classical Music for Relaxation: Mozart, Bach, Tchaikovsky...",
+    "link": "https://www.youtube.com/playlist?list=PLfEvA3-WESDVNW2kfXfZlMrirZynsw0Az",
+    "thumbnail": "https://i.ytimg.com/vi/u-xh0knsbig/hqdefault.jpg",
+    "channel": {
+      "id": "UC8yt3miC8OzQRGSdOrfgKuw",
+      "name": "Martino Dumingos ",
+      "link": "https://www.youtube.com/@martinodumingos",
+      "handle": "@martinodumingos",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 48,
+    "videos": [
+      {
+        "id": "u-xh0knsbig",
+        "title": "Deep Sleep Music 24/7 Calming Music Insomnia Sleep Relaxing Music Study Sleep Meditation #6",
+        "link": "https://youtu.be/u-xh0knsbig",
+        "duration": 3244,
+        "durationString": "54:04",
+        "thumbnail": "https://i.ytimg.com/vi/u-xh0knsbig/hqdefault.jpg"
+      },
+      {
+        "id": "ibc9ZNEbOKg",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #3",
+        "link": "https://youtu.be/ibc9ZNEbOKg",
+        "duration": 3048,
+        "durationString": "50:48",
+        "thumbnail": "https://i.ytimg.com/vi/ibc9ZNEbOKg/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLt_47Imx98wrucH_zNmGr8pFpCqzZYTad",
+    "title": "Beautiful and Relaxing Classical Piano Pieces",
+    "link": "https://www.youtube.com/playlist?list=PLt_47Imx98wrucH_zNmGr8pFpCqzZYTad",
+    "thumbnail": "https://i.ytimg.com/vi/SE9nDvo94hw/hqdefault.jpg",
+    "channel": {
+      "id": "UCPmCaKjzYF3pXYLfaRhacwA",
+      "name": "Kassia",
+      "link": "https://www.youtube.com/@Kassiapiano",
+      "handle": "@Kassiapiano",
+      "verified": true,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 45,
+    "videos": [
+      {
+        "id": "SE9nDvo94hw",
+        "title": "Mozart - Symphony No. 40 1st Movement",
+        "link": "https://youtu.be/SE9nDvo94hw",
+        "duration": 508,
+        "durationString": "8:28",
+        "thumbnail": "https://i.ytimg.com/vi/SE9nDvo94hw/hqdefault.jpg"
+      },
+      {
+        "id": "Ov-pZBWcEk0",
+        "title": "Tchaikovsky - Valse Sentimentale",
+        "link": "https://youtu.be/Ov-pZBWcEk0",
+        "duration": 328,
+        "durationString": "5:28",
+        "thumbnail": "https://i.ytimg.com/vi/Ov-pZBWcEk0/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLd8SOt0oHRRuLpb1mk_hSS62jhnpgzIj-",
+    "title": "Bach - Classical Music for Relaxation",
+    "link": "https://www.youtube.com/playlist?list=PLd8SOt0oHRRuLpb1mk_hSS62jhnpgzIj-",
+    "thumbnail": "https://i.ytimg.com/vi/lpkvtWJaswA/hqdefault.jpg",
+    "channel": {
+      "id": "UCZ7tXdXeWoMzHRqeWvxD9mQ",
+      "name": "Elli Sailer ",
+      "link": "https://www.youtube.com/@ellisailer-hj7pm",
+      "handle": "@ellisailer-hj7pm",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 39,
+    "videos": [
+      {
+        "id": "lpkvtWJaswA",
+        "title": "Sleepy pinao music for insomniacs with us - Piano music Fleitz #2",
+        "link": "https://youtu.be/lpkvtWJaswA",
+        "duration": 4627,
+        "durationString": "1:17:07",
+        "thumbnail": "https://i.ytimg.com/vi/lpkvtWJaswA/hqdefault.jpg"
+      },
+      {
+        "id": "MtTYSxw3zP4",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live",
+        "link": "https://youtu.be/MtTYSxw3zP4",
+        "duration": 2335,
+        "durationString": "38:55",
+        "thumbnail": "https://i.ytimg.com/vi/MtTYSxw3zP4/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLqT72RVlxT160tQIYYiLFkIIwwfAGLCMR",
+    "title": "Classical Music for Relaxation: Chopin, Beethoven, Liszt...",
+    "link": "https://www.youtube.com/playlist?list=PLqT72RVlxT160tQIYYiLFkIIwwfAGLCMR",
+    "thumbnail": "https://i.ytimg.com/vi/ibc9ZNEbOKg/hqdefault.jpg",
+    "channel": {
+      "id": "UC7R0znTIXjZ6hSkhBvQsduQ",
+      "name": "Pauli Draycott ",
+      "link": "https://www.youtube.com/@paulidraycott",
+      "handle": "@paulidraycott",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 48,
+    "videos": [
+      {
+        "id": "ibc9ZNEbOKg",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #3",
+        "link": "https://youtu.be/ibc9ZNEbOKg",
+        "duration": 3048,
+        "durationString": "50:48",
+        "thumbnail": "https://i.ytimg.com/vi/ibc9ZNEbOKg/hqdefault.jpg"
+      },
+      {
+        "id": "HmWH4SNeVLQ",
+        "title": "Sleepy pinao music for insomniacs with us - Piano music Fleitz",
+        "link": "https://youtu.be/HmWH4SNeVLQ",
+        "duration": 2260,
+        "durationString": "37:40",
+        "thumbnail": "https://i.ytimg.com/vi/HmWH4SNeVLQ/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLveKcQJzsowPg-zsLiTWp9hmc5eHVlJs9",
+    "title": "4 Hours Classical Music for Relaxation",
+    "link": "https://www.youtube.com/playlist?list=PLveKcQJzsowPg-zsLiTWp9hmc5eHVlJs9",
+    "thumbnail": "https://i.ytimg.com/vi/qgiWalKujoA/hqdefault.jpg",
+    "channel": {
+      "id": "UCHYr253bis4ZKcAyN2oCxmw",
+      "name": "Polly Royal ",
+      "link": "https://www.youtube.com/@pollyroyal6320",
+      "handle": "@pollyroyal6320",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 36,
+    "videos": [
+      {
+        "id": "qgiWalKujoA",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #2",
+        "link": "https://youtu.be/qgiWalKujoA",
+        "duration": 2907,
+        "durationString": "48:27",
+        "thumbnail": "https://i.ytimg.com/vi/qgiWalKujoA/hqdefault.jpg"
+      },
+      {
+        "id": "ibc9ZNEbOKg",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #3",
+        "link": "https://youtu.be/ibc9ZNEbOKg",
+        "duration": 3048,
+        "durationString": "50:48",
+        "thumbnail": "https://i.ytimg.com/vi/ibc9ZNEbOKg/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLSmC_2HEjo626kGJMcnVKxQnXcn7pJab-",
+    "title": "Best Relaxing Classical Music | Peaceful, Calming, Study, Sleep, Body & Mind  relaxing Music",
+    "link": "https://www.youtube.com/playlist?list=PLSmC_2HEjo626kGJMcnVKxQnXcn7pJab-",
+    "thumbnail": "https://i.ytimg.com/vi/lpkvtWJaswA/hqdefault.jpg",
+    "channel": {
+      "id": "UCxc2dnGAd3yp99j3yRwJ9Fw",
+      "name": "Konrad Peery ",
+      "link": "https://www.youtube.com/@konradpeery",
+      "handle": "@konradpeery",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 47,
+    "videos": [
+      {
+        "id": "lpkvtWJaswA",
+        "title": "Sleepy pinao music for insomniacs with us - Piano music Fleitz #2",
+        "link": "https://youtu.be/lpkvtWJaswA",
+        "duration": 4627,
+        "durationString": "1:17:07",
+        "thumbnail": "https://i.ytimg.com/vi/lpkvtWJaswA/hqdefault.jpg"
+      },
+      {
+        "id": "qgiWalKujoA",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #2",
+        "link": "https://youtu.be/qgiWalKujoA",
+        "duration": 2907,
+        "durationString": "48:27",
+        "thumbnail": "https://i.ytimg.com/vi/qgiWalKujoA/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PL3UUDmqkEHKcnNzUwaG4zLIhS7-pefqBk",
+    "title": "Classical Music for ADHD",
+    "link": "https://www.youtube.com/playlist?list=PL3UUDmqkEHKcnNzUwaG4zLIhS7-pefqBk",
+    "thumbnail": "https://i.ytimg.com/vi/NVFeRUBHqv0/hqdefault.jpg",
+    "channel": {
+      "id": "UC0z4M-ffuwyRSvtXsQEhlKA",
+      "name": "Andrea Graham",
+      "link": "https://www.youtube.com/@andreagraham6185",
+      "handle": "@andreagraham6185",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
     },
     "videoCount": 15,
     "videos": [
-        {
-            "id": "yoaNCEE4QLY",
-            "title": "J S Bach Jesu Joy of Man's Desiring chamber orchestra version",
-            "link": "https://youtu.be/yoaNCEE4QLY",
-            "duration": 210,
-            "thumbnail": "https://i.ytimg.com/vi/yoaNCEE4QLY/hqdefault.jpg"
-        },
-        {
-            "id": "mGV_oiAcmaY",
-            "title": "Bach Violin Concerto in D Minor",
-            "link": "https://youtu.be/mGV_oiAcmaY",
-            "duration": 380,
-            "thumbnail": "https://i.ytimg.com/vi/mGV_oiAcmaY/hqdefault.jpg"
-        }
+      {
+        "id": "NVFeRUBHqv0",
+        "title": "Mozart Study Music 📚 Classical Music for Studying and Concentration 🎼 Flute & Harp Instrumental",
+        "link": "https://youtu.be/NVFeRUBHqv0",
+        "duration": 10973,
+        "durationString": "3:02:53",
+        "thumbnail": "https://i.ytimg.com/vi/NVFeRUBHqv0/hqdefault.jpg"
+      },
+      {
+        "id": "p3qfJQGngQc",
+        "title": "Ludwig van Beethoven - Piano Concerto No. 5 in E-flat major, Op. 73 'Emperor'",
+        "link": "https://youtu.be/p3qfJQGngQc",
+        "duration": 2341,
+        "durationString": "39:01",
+        "thumbnail": "https://i.ytimg.com/vi/p3qfJQGngQc/hqdefault.jpg"
+      }
     ]
-}
+  },
+  {
+    "id": "PLcGkkXtask_fMi65fxIQfjHdeqbukMHRP",
+    "title": "Relaxing Classical Music | HalidonMusic",
+    "link": "https://www.youtube.com/playlist?list=PLcGkkXtask_fMi65fxIQfjHdeqbukMHRP",
+    "thumbnail": "https://i.ytimg.com/vi/uk-DSogtQRo/hqdefault.jpg",
+    "channel": {
+      "id": "UCyOfqgtsQaM3S-VZnsYnHjQ",
+      "name": "HALIDONMUSIC",
+      "link": "https://www.youtube.com/@HALIDONMUSIC",
+      "handle": "@HALIDONMUSIC",
+      "verified": true,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 109,
+    "videos": [
+      {
+        "id": "uk-DSogtQRo",
+        "title": "Classical Music for Relaxation: Mozart, Bach, Tchaikovsky...",
+        "link": "https://youtu.be/uk-DSogtQRo",
+        "duration": 6518,
+        "durationString": "1:48:38",
+        "thumbnail": "https://i.ytimg.com/vi/uk-DSogtQRo/hqdefault.jpg"
+      },
+      {
+        "id": "Jye1bel-hcc",
+        "title": "Bach - Classical Music for Relaxation",
+        "link": "https://youtu.be/Jye1bel-hcc",
+        "duration": 7005,
+        "durationString": "1:56:45",
+        "thumbnail": "https://i.ytimg.com/vi/Jye1bel-hcc/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLpXCUxTIZp_LhstglJVNMi1jPVGD9AbiH",
+    "title": "The Most Relaxing Classical Album in The World....Ever!",
+    "link": "https://www.youtube.com/playlist?list=PLpXCUxTIZp_LhstglJVNMi1jPVGD9AbiH",
+    "thumbnail": "https://i.ytimg.com/vi/GkWjO8ZJcpc/hqdefault.jpg",
+    "channel": {
+      "id": "UCgVe3pKYpONPrlpF02ntCPQ",
+      "name": "Rhanwil Tubilag",
+      "link": "https://www.youtube.com/@rhanpt",
+      "handle": "@rhanpt",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 19,
+    "videos": [
+      {
+        "id": "GkWjO8ZJcpc",
+        "title": "Bach: Air, Orchestral Suites No. 3 in D major, BWV 1068",
+        "link": "https://youtu.be/GkWjO8ZJcpc",
+        "duration": 367,
+        "durationString": "6:07",
+        "thumbnail": "https://i.ytimg.com/vi/GkWjO8ZJcpc/hqdefault.jpg"
+      },
+      {
+        "id": "-XJ0xRkcskU",
+        "title": "Grieg: Peer Gynt, Op. 23 - Morning Mood [Morgenstemning] (7/10)",
+        "link": "https://youtu.be/-XJ0xRkcskU",
+        "duration": 234,
+        "durationString": "3:54",
+        "thumbnail": "https://i.ytimg.com/vi/-XJ0xRkcskU/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLfoFWLr-mFQtqRBlPh2ekBsdEPyHNlD18",
+    "title": "Relaxing Orchestra Music Mix | Classical Music Mix | Sleep, Relax, Study Meditation",
+    "link": "https://www.youtube.com/playlist?list=PLfoFWLr-mFQtqRBlPh2ekBsdEPyHNlD18",
+    "thumbnail": "https://i.ytimg.com/vi/jlRPU0igUwY/hqdefault.jpg",
+    "channel": {
+      "id": "UCUTI_qhWnovWBWsce0VehyQ",
+      "name": "Stacee Cliffe ",
+      "link": "https://www.youtube.com/@staceecliffe-fr8mo",
+      "handle": "@staceecliffe-fr8mo",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 37,
+    "videos": [
+      {
+        "id": "jlRPU0igUwY",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #7",
+        "link": "https://youtu.be/jlRPU0igUwY",
+        "duration": 3117,
+        "durationString": "51:57",
+        "thumbnail": "https://i.ytimg.com/vi/jlRPU0igUwY/hqdefault.jpg"
+      },
+      {
+        "id": "ju6tJOX1qG8",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #4",
+        "link": "https://youtu.be/ju6tJOX1qG8",
+        "duration": 2950,
+        "durationString": "49:10",
+        "thumbnail": "https://i.ytimg.com/vi/ju6tJOX1qG8/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PL1vJweCIDwsspiLvDtVKPUwFqeI4s6lTM",
+    "title": "8 HOURS Classical Music for Sleeping: Relaxing Piano Music Mozart, Debussy, Chopin, Schubert, Grieg",
+    "link": "https://www.youtube.com/playlist?list=PL1vJweCIDwsspiLvDtVKPUwFqeI4s6lTM",
+    "thumbnail": "https://i.ytimg.com/vi/suZmIpN3ZdA/hqdefault.jpg",
+    "channel": {
+      "id": "UCjU8scujv5Xv6Thffv7VX4w",
+      "name": "Devin Warburton ",
+      "link": "https://www.youtube.com/@devinwarburton",
+      "handle": "@devinwarburton",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 22,
+    "videos": [
+      {
+        "id": "suZmIpN3ZdA",
+        "title": "Deep Sleep Music 24/7 Calming Music Insomnia Sleep Relaxing Music Study Sleep Meditation #3",
+        "link": "https://youtu.be/suZmIpN3ZdA",
+        "duration": 3674,
+        "durationString": "1:01:14",
+        "thumbnail": "https://i.ytimg.com/vi/suZmIpN3ZdA/hqdefault.jpg"
+      },
+      {
+        "id": "KvhKOszPrNo",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #5",
+        "link": "https://youtu.be/KvhKOszPrNo",
+        "duration": 2952,
+        "durationString": "49:12",
+        "thumbnail": "https://i.ytimg.com/vi/KvhKOszPrNo/hqdefault.jpg"
+      }
+    ]
+  },
+  {
+    "id": "PLhTEmFnyD5Adfun2dFfAHiblspdkKuyGN",
+    "title": "Canon in D Major | Pachelbel's Canon | 2 HOURS Version | Classical Music Relaxation Violin",
+    "link": "https://www.youtube.com/playlist?list=PLhTEmFnyD5Adfun2dFfAHiblspdkKuyGN",
+    "thumbnail": "https://i.ytimg.com/vi/ju6tJOX1qG8/hqdefault.jpg",
+    "channel": {
+      "id": "UCZs9ffK_pS2mgfZHJoh0Wog",
+      "name": "Dicky Zanni ",
+      "link": "https://www.youtube.com/@dickyzanni2324",
+      "handle": "@dickyzanni2324",
+      "verified": false,
+      "thumbnail": "https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png"
+    },
+    "videoCount": 79,
+    "videos": [
+      {
+        "id": "ju6tJOX1qG8",
+        "title": "Sleep music Beautiful Sleep Music for Stress Relief - my music live #4",
+        "link": "https://youtu.be/ju6tJOX1qG8",
+        "duration": 2950,
+        "durationString": "49:10",
+        "thumbnail": "https://i.ytimg.com/vi/ju6tJOX1qG8/hqdefault.jpg"
+      },
+      {
+        "id": "oRpSnOPEWBc",
+        "title": "☯ Sleeping Violin ☯ 6 Hours Violin & Piano Relaxation, Sleep & Study Music #09",
+        "link": "https://youtu.be/oRpSnOPEWBc",
+        "duration": 21756,
+        "durationString": "6:02:36",
+        "thumbnail": "https://i.ytimg.com/vi/oRpSnOPEWBc/hqdefault.jpg"
+      }
+    ]
+  }
+]
