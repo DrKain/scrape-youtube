@@ -81,6 +81,7 @@ export interface PlaylistVideo {
     title: string;
     link: string;
     duration: number;
+    durationString: string;
     /** Thumbnail of the first video in the playlist */
     thumbnail: string;
 }
@@ -105,6 +106,7 @@ export interface Video extends Result {
     uploaded: string;
     /** Duration in seconds */
     duration: number;
+    durationString: string;
     description: string;
 }
 
