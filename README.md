@@ -84,7 +84,13 @@ full descriptions, like/dislike ratio, video ads ect.
 Please see [this](https://github.com/DrKain/scrape-youtube/wiki/Extra-Info) example in the wiki to see how.
 
 ## Subscriber count
+
 As mentioned in issue [#57](https://github.com/DrKain/scrape-youtube/issues/57) some channels appear to have the subscriber count hidden. In this case the package will default to 0.
+
+## Handles
+
+Channel handles will be used if available. Some channels do not have handles, if this is the case the channel link will use the old ID, EG: `/channel/12345` vs `/@user`
+I recommend sticking to the ID as handles are unreliable.
 
 ## Quick Info
 
