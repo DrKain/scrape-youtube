@@ -11,7 +11,6 @@ import {
 import { getStreamData, getPlaylistData, getVideoData, getChannelRenderData } from './parser';
 import { get } from 'https';
 export * from './interface';
-import { parse } from 'url';
 
 class Youtube {
     /**
@@ -162,7 +161,7 @@ class Youtube {
         const request = options.request || {};
 
         return new Promise((resolve, reject) => {
-            get(Object.assign(parse(url), request), (res: any) => {
+            get(Object.assign(new URL(url), request), (res: any) => {
                 res.setEncoding('utf8');
                 let data = '';
                 res.on('data', (chunk: any) => (data += chunk));
@@ -172,7 +171,6 @@ class Youtube {
     }
 
     public search(query: string, options: SearchOptions = {}): Promise<Results> {
-        if (options.requestOptions) options.request = options.requestOptions;
         return new Promise(async (resolve, reject) => {
             try {
                 const page = await this.load(query, options);

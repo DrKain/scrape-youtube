@@ -6,6 +6,7 @@ declare class Youtube {
      */
     debug: boolean;
     host: string;
+    path: string;
     constructor();
     private getURL;
     private extractRenderData;

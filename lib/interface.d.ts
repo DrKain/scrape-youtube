@@ -45,11 +45,21 @@ export interface Channel {
     id: string;
     name: string;
     link: string;
+    /**
+     * Warning: This is currently unreliable as the API will sometimes use the old channel link.
+     * I recommend avoiding this if possible.
+     */
+    handle: string | null;
     verified: boolean;
     thumbnail: string;
 }
 export interface ChannelResult extends Channel {
     id: string;
+    /**
+     * Warning: This is currently unreliable as the API will sometimes use the old channel link.
+     * I recommend avoiding this if possible.
+     */
+    handle: string | null;
     description: string;
     subscribers: string;
     subscriberCount: number;
@@ -61,6 +71,7 @@ export interface PlaylistVideo {
     title: string;
     link: string;
     duration: number;
+    durationString: string;
     /** Thumbnail of the first video in the playlist */
     thumbnail: string;
 }
@@ -82,6 +93,7 @@ export interface Video extends Result {
     uploaded: string;
     /** Duration in seconds */
     duration: number;
+    durationString: string;
     description: string;
 }
 export interface Playlist extends Result {

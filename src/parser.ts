@@ -21,10 +21,11 @@ const isVerified = (video: any) => {
 
 /**
  * Attempt to fetch channel link
- * @param channel Channel Renderer
+ * @param id Channel ID
+ * @param handle Channel Handle
  */
-const getChannelLink = (channel: any) => {
-    return 'https://www.youtube.com/channel/' + channel.navigationEndpoint.browseEndpoint.browseId;
+const getChannelLink = (id: string, handle: null | string) => {
+    return handle ? 'https://www.youtube.com/' + handle : 'https://www.youtube.com/channel/' + id;
 };
 
 /**
@@ -103,7 +104,17 @@ const getVideoCount = (channel: any) => {
  */
 const getSubscriberCount = (channel: any) => {
     try {
-        return channel.subscriberCountText.simpleText.split(' ').shift();
+        // YouTube started using the channel handle in "subscriberCountText"
+        // Really not sure what the logic was there.
+        const samples = [channel.subscriberCountText.simpleText, channel.videoCountText.simpleText];
+
+        for (const item of samples) {
+            if (item.includes('subscribers')) {
+                return item.split(' ').shift();
+            }
+        }
+
+        return '0';
     } catch (e) {
         return '0';
     }
@@ -116,7 +127,7 @@ const getSubscriberCount = (channel: any) => {
  */
 const convertSubs = (channel: any): number => {
     try {
-        const count = channel.subscriberCountText.simpleText.split(' ').shift();
+        const count = getSubscriberCount(channel);
 
         // If there's no K, M or B at the end.
         if (!isNaN(+count)) return +count;
@@ -160,7 +171,6 @@ const getChannelThumbnail = (video: any) => {
 const getVideoThumbnail = (id: string) => {
     // This doesn't always work, unfortunately
     // return `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
-
     return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 };
 
@@ -182,10 +192,14 @@ const getBiggestThumbnail = (thumbnails: any) => {
  * @param channel Channel Renderer
  */
 export const getChannelRenderData = (channel: any): ChannelResult => {
+    const id = channel.channelId;
+    const handle = getChannelHandle(channel);
+
     return {
-        id: channel.channelId,
+        id,
         name: channel.title.simpleText,
-        link: 'https://www.youtube.com/channel/' + channel.channelId,
+        link: getChannelLink(id, handle),
+        handle,
         verified: isVerified(channel),
         thumbnail: getBiggestThumbnail(channel.thumbnail.thumbnails),
         description: compress(channel.descriptionSnippet),
@@ -196,15 +210,29 @@ export const getChannelRenderData = (channel: any): ChannelResult => {
 };
 
 /**
+ * Attempt to resolve the channel's handle. Returns null if no custom handle is found.
+ * @param channel Channel Renderer
+ * @returns handle or null
+ */
+export const getChannelHandle = (channel: any): string | null => {
+    const url = channel.navigationEndpoint.browseEndpoint.canonicalBaseUrl;
+    return url.startsWith('/@') ? url.substr(1) : null;
+};
+
+/**
  * Fetch basic information about the channel
  * @param video Video Renderer
  */
 export const getChannelData = (video: any): Channel => {
     const channel = (video.ownerText || video.longBylineText)['runs'][0];
+    const handle = getChannelHandle(channel);
+    const id = channel.navigationEndpoint.browseEndpoint.browseId;
+
     return {
-        id: channel.navigationEndpoint.browseEndpoint.browseId,
+        id,
         name: channel.text,
-        link: getChannelLink(channel),
+        link: getChannelLink(id, handle),
+        handle,
         verified: isVerified(video),
         thumbnail: getChannelThumbnail(video)
     };
@@ -258,6 +286,7 @@ const getPlaylistVideo = (child: any): PlaylistVideo => {
         title: child.title.simpleText,
         link: getLink(child.videoId),
         duration: parseDuration(child.lengthText.simpleText),
+        durationString: child.lengthText.simpleText,
         thumbnail: getVideoThumbnail(child.videoId)
     };
 };
@@ -280,7 +309,8 @@ export const getVideoData = (result: any): Video => {
         description: getVideoDescription(result),
         views: getViews(result),
         uploaded: getUploadDate(result),
-        duration: result.lengthText ? parseDuration(result.lengthText.simpleText) : 0
+        duration: result.lengthText ? parseDuration(result.lengthText.simpleText) : 0,
+        durationString: result.lengthText ? result.lengthText.simpleText : '0'
     };
 };
 
