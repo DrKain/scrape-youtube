@@ -19,11 +19,12 @@ class Youtube {
      */
     public debug = false;
     public host = 'https://www.youtube.com';
+    public path = '/results';
 
     constructor() {}
 
     private getURL(query: string, options: SearchOptions): string {
-        const url = new URL('/results', this.host);
+        const url = new URL(this.path, this.host);
         let sp = ResultFilter[(options.type || 'video') as ResultType];
 
         url.search = new URLSearchParams({
