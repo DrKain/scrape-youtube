@@ -53,7 +53,7 @@ If you wish to load an entire playlist, consider using [ytdl-core](https://npmjs
 ## Custom Filters
 
 You can pass `{ sp: 'ABC' }` as the second parameter to use custom filters like upload date, duration, features ect.  
-You will need to fetch the SP parameter yourself from youtube. Please see [this image](https://i.imgur.com/9WHMvkI.png) for an example.
+You will need to fetch the SP parameter yourself from youtube. Please see [this image](https://i.imgur.com/TdAbYaP.png) for an example.
 
 ## Request Options
 
