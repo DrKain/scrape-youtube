@@ -80,7 +80,7 @@ export interface Result {
     id: string;
     title: string;
     link: string;
-    thumbnail: string;
+    thumbnail?: string;
     /** Information about the uploader */
     channel: Channel;
 }
@@ -90,11 +90,11 @@ export interface LiveStream extends Result {
 export interface Video extends Result {
     views: number;
     /** Sometimes the upload date is not available. YouTube is to blame, not this package. */
-    uploaded: string;
+    uploaded?: string;
     /** Duration in seconds */
     duration: number;
     durationString: string;
-    description: string;
+    description?: string;
 }
 export interface Playlist extends Result {
     /** Number of videos in the playlist */

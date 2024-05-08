@@ -12,7 +12,8 @@ declare class Youtube {
     private extractRenderData;
     /**
      * Parse the data extracted from the page to match each interface
-     * @param data Video Renderer Data
+     * @param contents Video Renderer Data
+     * @param continuationItemRenderer Continuation Renderer Data
      */
     private parseData;
     /**

@@ -1,21 +1,13 @@
 // This file contains all the functions used in extracting information from the video renderer objects
 import { Channel, ChannelResult, LiveStream, Playlist, PlaylistVideo, Result, Video } from './interface';
-
-/**
- * Fetch all badges the channel has
- * @param video Video Renderer
- */
-const getChannelBadges = (video: any) => {
-    const ownerBadges = video.ownerBadges;
-    return ownerBadges ? ownerBadges.map((badge: any) => badge['metadataBadgeRenderer']['style']) : [];
-};
+import { Badge, ChannelTumbnailWithLinkRenderer, VideoRenderer, VideoRendererChannelRun, VideoRendererTitle } from './interfaces/YoutubeInterfaces';
 
 /**
  * Attempt to find out if the channel is verified
- * @param video Video Renderer
+ * @param videoRenderer Video Renderer
  */
-const isVerified = (video: any) => {
-    const badges = getChannelBadges(video);
+const isVerified = (badgesRaw?: Badge[]) => {
+    const badges = badgesRaw?.map(badge => badge.metadataBadgeRenderer.style) ?? []
     return badges.includes('BADGE_STYLE_TYPE_VERIFIED_ARTIST') || badges.includes('BADGE_STYLE_TYPE_VERIFIED');
 };
 
@@ -24,7 +16,7 @@ const isVerified = (video: any) => {
  * @param id Channel ID
  * @param handle Channel Handle
  */
-const getChannelLink = (id: string, handle: null | string) => {
+const getChannelLink = (id: string, handle: null | string): string => {
     return handle ? 'https://www.youtube.com/' + handle : 'https://www.youtube.com/channel/' + id;
 };
 
@@ -32,7 +24,7 @@ const getChannelLink = (id: string, handle: null | string) => {
  * Compresses the "runs" texts into a single string.
  * @param key Video Renderer key
  */
-const compress = (key: any) => {
+const compress = (key: VideoRendererTitle | any) => {
     return (key && key['runs'] ? key['runs'].map((v: any) => v.text) : []).join('');
 };
 
@@ -40,7 +32,10 @@ const compress = (key: any) => {
  * Parse an hh:mm:ss timestamp into total seconds
  * @param text hh:mm:ss
  */
-const parseDuration = (text: string): number => {
+const parseDuration = (text?: string): number | undefined => {
+    if(!text)
+        return undefined
+
     const nums = text.split(':');
     let sum = 0;
     let multi = 1;
@@ -55,19 +50,21 @@ const parseDuration = (text: string): number => {
 
 /**
  * Sometimes the upload date is not available. YouTube is to blame, not this package.
- * @param video Video Renderer
+ * @param videoRenderer Video Renderer
  */
-const getUploadDate = (video: any) => {
-    return (video.publishedTimeText ? video.publishedTimeText.simpleText : '').replace('Streamed', '').trim();
+const getUploadDate = (uploadText?: string): string | undefined => {
+    if(!uploadText)
+        return undefined
+    return uploadText.replace('Streamed', '').trim();
 };
 
 /**
  * Fetch the number of users watching a live stream
- * @param result Video Renderer
+ * @param videoRenderer Video Renderer
  */
-const getWatchers = (result: any) => {
+const getWatchers = (videoRenderer: VideoRenderer): number => {
     try {
-        return +result.viewCountText.runs[0].text.replace(/[^0-9]/g, '');
+        return +videoRenderer.viewCountText.runs[0].text.replace(/[^0-9]/g, '');
     } catch (e) {
         return 0;
     }
@@ -75,11 +72,11 @@ const getWatchers = (result: any) => {
 
 /**
  * Some paid movies do not have views
- * @param video Video Renderer
+ * @param videoRenderer Video Renderer
  */
-const getViews = (video: any) => {
+const getViews = (videoRenderer: VideoRenderer): number => {
     try {
-        return +video.viewCountText.simpleText.replace(/[^0-9]/g, '');
+        return +videoRenderer.viewCountText.simpleText.replace(/[^0-9]/g, '');
     } catch (e) {
         return 0;
     }
@@ -155,20 +152,18 @@ const convertSubs = (channel: any): number => {
 
 /**
  * Attempt to fetch the channel thumbnail
- * @param video Channel Renderer
+ * @param videoRenderer video Renderer
  */
-const getChannelThumbnail = (video: any) => {
-    try {
-        const thumbRenders = video.channelThumbnailSupportedRenderers;
-        const url = thumbRenders.channelThumbnailWithLinkRenderer.thumbnail.thumbnails[0].url;
-        return url.split('=').shift() + '=s0?imgmax=0';
-    } catch (e) {
-        // Return a default youtube avatar when the channel thumbnail is not available (in playlists)
-        return `https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png`;
-    }
+const getChannelThumbnail = (channelThumbnailWithLinkRenderer?: ChannelTumbnailWithLinkRenderer): string => {
+    const url = channelThumbnailWithLinkRenderer?.thumbnail?.thumbnails?.[0].url
+
+    const urlElement = url?.split('=').shift()
+
+    return urlElement ? urlElement + '=s0?imgmax=0' : `https://www.gstatic.com/youtube/img/originals/promo/ytr-logo-for-search_160x160.png`
+
 };
 
-const getVideoThumbnail = (id: string) => {
+const getVideoThumbnail = (id: string): string => {
     // This doesn't always work, unfortunately
     // return `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
     return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
@@ -179,11 +174,11 @@ const getVideoThumbnail = (id: string) => {
  * @param id ID
  * @param playlist is playlist true/false
  */
-const getLink = (id: string, playlist = false) => {
+const getLink = (id: string, playlist = false): string => {
     return (playlist ? 'https://www.youtube.com/playlist?list=' : 'https://youtu.be/') + id;
 };
 
-const getBiggestThumbnail = (thumbnails: any) => {
+const getBiggestThumbnail = (thumbnails: any): string => {
     return 'https:' + thumbnails.shift().url.split('=').shift() + '=s0?imgmax=0';
 };
 
@@ -214,17 +209,17 @@ export const getChannelRenderData = (channel: any): ChannelResult => {
  * @param channel Channel Renderer
  * @returns handle or null
  */
-export const getChannelHandle = (channel: any): string | null => {
+export const getChannelHandle = (channel: VideoRendererChannelRun): string | null => {
     const url = channel.navigationEndpoint.browseEndpoint.canonicalBaseUrl;
-    return url.startsWith('/@') ? url.substr(1) : null;
+    return url.startsWith('/@') ? url.slice(1) : null;
 };
 
 /**
  * Fetch basic information about the channel
- * @param video Video Renderer
+ * @param videoRenderer Video Renderer
  */
-export const getChannelData = (video: any): Channel => {
-    const channel = (video.ownerText || video.longBylineText)['runs'][0];
+export const getChannelData = (videoRenderer: VideoRenderer): Channel => {
+    const channel = (videoRenderer.ownerText || videoRenderer.longBylineText)['runs'][0];
     const handle = getChannelHandle(channel);
     const id = channel.navigationEndpoint.browseEndpoint.browseId;
 
@@ -233,8 +228,8 @@ export const getChannelData = (video: any): Channel => {
         name: channel.text,
         link: getChannelLink(id, handle),
         handle,
-        verified: isVerified(video),
-        thumbnail: getChannelThumbnail(video)
+        verified: isVerified(videoRenderer.ownerBadges),
+        thumbnail: getChannelThumbnail(videoRenderer.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer)
     };
 };
 
@@ -264,15 +259,15 @@ const getPlaylistResultData = (result: any): Result => {
 
 /**
  * Fetch the default result data included in all result types
- * @param result Video Renderer
+ * @param videoRenderer Video Renderer
  */
-const getResultData = (result: any): Result => {
+const getResultData = (videoRenderer: VideoRenderer): Result => {
     return {
-        id: result.videoId,
-        title: compress(result.title),
-        link: getLink(result.videoId, false),
-        thumbnail: getVideoThumbnail(result.videoId),
-        channel: getChannelData(result)
+        id: videoRenderer.videoId,
+        title: compress(videoRenderer.title),
+        link: getLink(videoRenderer.videoId, false),
+        thumbnail: getVideoThumbnail(videoRenderer.videoId),
+        channel: getChannelData(videoRenderer)
     };
 };
 
@@ -285,15 +280,15 @@ const getPlaylistVideo = (child: any): PlaylistVideo => {
         id: child.videoId,
         title: child.title.simpleText,
         link: getLink(child.videoId),
-        duration: parseDuration(child.lengthText.simpleText),
+        duration: parseDuration(child.lengthText.simpleText) ?? 0,
         durationString: child.lengthText.simpleText,
         thumbnail: getVideoThumbnail(child.videoId)
     };
 };
 
-const getVideoDescription = (result: any): string => {
+const getVideoDescription = (videoRenderer: VideoRenderer): string => {
     try {
-        return compress(result.detailedMetadataSnippets[0]['snippetText']) || result.descriptionSnippet || '';
+        return compress(videoRenderer.detailedMetadataSnippets[0]['snippetText']) || videoRenderer.descriptionSnippet || '';
     } catch (error) {
         return '';
     }
@@ -301,16 +296,16 @@ const getVideoDescription = (result: any): string => {
 
 /**
  * Extract all information required for the "Video" result type
- * @param result Video Renderer
+ * @param videoRenderer Video Renderer
  */
-export const getVideoData = (result: any): Video => {
+export const getVideoData = (videoRenderer: VideoRenderer): Video => {
     return {
-        ...getResultData(result),
-        description: getVideoDescription(result),
-        views: getViews(result),
-        uploaded: getUploadDate(result),
-        duration: result.lengthText ? parseDuration(result.lengthText.simpleText) : 0,
-        durationString: result.lengthText ? result.lengthText.simpleText : '0'
+        ...getResultData(videoRenderer),
+        description: getVideoDescription(videoRenderer),
+        views: getViews(videoRenderer),
+        uploaded: getUploadDate(videoRenderer.publishedTimeText?.simpleText),
+        duration: parseDuration(videoRenderer.lengthText?.simpleText) ?? 0,
+        durationString: videoRenderer.lengthText ? videoRenderer.lengthText.simpleText : '0'
     };
 };
 
@@ -335,9 +330,14 @@ export const getPlaylistData = (result: any): Playlist => {
     };
 };
 
-export const getStreamData = (result: any): LiveStream => {
+/**
+ * 
+ * @param videoRenderer  VideoRenderer
+ * @returns LiveStream
+ */
+export const getStreamData = (videoRenderer: VideoRenderer): LiveStream => {
     return {
-        ...getResultData(result),
-        watching: getWatchers(result)
+        ...getResultData(videoRenderer),
+        watching: getWatchers(videoRenderer)
     };
 };
