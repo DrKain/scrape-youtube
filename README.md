@@ -30,7 +30,8 @@ const { videos } = await youtube.search('Short Change Hero');
 
 ## Custom Types
 
-Supported types are: `video`, `live`, `movie`, `channel`, `playlist` and `any`
+Supported types are: `video`, `live`, `movie`, `channel`, `playlist` and `any`.
+These types use the `sp` parameter. If you pass your own `sp` value it will overwrite the types. See the "[custom filters](https://github.com/DrKain/scrape-youtube/wiki#custom-filters)" section for more information.
 
 ```javascript
 youtube.search('lofi hip hop beats to relax/study to', { type: 'live' }).then((results) => {
