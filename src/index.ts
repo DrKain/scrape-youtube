@@ -8,6 +8,7 @@ import {
     LiveStream,
     ChannelResult
 } from './interface';
+import { ItemSectionRendererContents, RichGridRendererContents, SectionListRendererContents, VideoRenderer, YoutubeGetSearchData } from './interfaces/YoutubeInterfaces';
 import { getStreamData, getPlaylistData, getVideoData, getChannelRenderData } from './parser';
 import { get } from 'https';
 export * from './interface';
@@ -36,7 +37,7 @@ class Youtube {
         return url.href + '&sp=' + sp;
     }
 
-    private extractRenderData(page: string): Promise<JSON> {
+    private extractRenderData(page: string): Promise<ItemSectionRendererContents[] | RichGridRendererContents[]> {
         return new Promise((resolve, reject) => {
             try {
                 // #1 - Remove line breaks
@@ -49,26 +50,30 @@ class Youtube {
                 // #4 - Join the split data and split again at the closing tag
                 const data = spot.join('=').split(';</script>')[0];
 
-                let render = null;
-                let contents = [];
-                const primary = JSON.parse(data).contents.twoColumnSearchResultsRenderer.primaryContents;
+                let render: SectionListRendererContents[] = [];
+                let contents: ItemSectionRendererContents[] | RichGridRendererContents[] = [];
+
+                const youtubeData = JSON.parse(data) as YoutubeGetSearchData
+                const primary = youtubeData.contents.twoColumnSearchResultsRenderer.primaryContents;
 
                 // The renderer we want. This should contain all search result information
                 if (primary['sectionListRenderer']) {
                     if (this.debug) console.log('[ytInitialData] sectionListRenderer');
 
                     // Filter only the search results, exclude ads and promoted content
-                    render = primary.sectionListRenderer.contents.filter((item: any) => {
+                    render = primary.sectionListRenderer.contents.filter(item => {
                         return (
                             item.itemSectionRenderer &&
                             item.itemSectionRenderer.contents &&
                             item.itemSectionRenderer.contents.filter(
-                                (c: any) => c['videoRenderer'] || c['playlistRenderer'] || c['channelRenderer']
+                                (c) => c['videoRenderer'] || c['playlistRenderer'] || c['channelRenderer']
                             ).length
                         );
                     });
 
-                    if (render.length) contents = render.shift().itemSectionRenderer.contents;
+                    if (render.length > 0) {
+                        contents = render.shift()!.itemSectionRenderer.contents;
+                    }
                 }
 
                 // YouTube occasionally switches to a rich grid renderer.
@@ -76,10 +81,10 @@ class Youtube {
                 if (primary['richGridRenderer']) {
                     if (this.debug) console.log('[ytInitialData] richGridRenderer');
                     contents = primary.richGridRenderer.contents
-                        .filter((item: any) => {
+                        .filter((item) => {
                             return item.richItemRenderer && item.richItemRenderer.content;
                         })
-                        .map((item: any) => item.richItemRenderer.content);
+                        .map((item) => item.richItemRenderer.content);
                 }
 
                 resolve(contents);
@@ -91,9 +96,10 @@ class Youtube {
 
     /**
      * Parse the data extracted from the page to match each interface
-     * @param data Video Renderer Data
+     * @param contents Video Renderer Data
+     * @param continuationItemRenderer Continuation Renderer Data
      */
-    private parseData(data: any): Promise<Results> {
+    private parseData(contents: ItemSectionRendererContents[] | RichGridRendererContents[]): Promise<Results> {
         return new Promise((resolve, reject) => {
             try {
                 const results: Results = {
@@ -103,7 +109,8 @@ class Youtube {
                     channels: []
                 };
 
-                data.forEach((item: any) => {
+                // Parse contents
+                contents.forEach((item: any) => {
                     if (item['channelRenderer']) {
                         try {
                             const result: ChannelResult = getChannelRenderData(item['channelRenderer']);
@@ -115,16 +122,18 @@ class Youtube {
 
                     if (item['videoRenderer'] && item['videoRenderer']['lengthText']) {
                         try {
-                            const result: Video = getVideoData(item['videoRenderer']);
+                            const videoRenderer = item['videoRenderer'] as VideoRenderer
+                            const result: Video = getVideoData(videoRenderer)
                             results.videos.push(result);
                         } catch (e) {
                             if (this.debug) console.log(e);
                         }
-                    }
+                    }                    
 
                     if (item['videoRenderer'] && !item['videoRenderer']['lengthText']) {
                         try {
-                            const result: LiveStream = getStreamData(item['videoRenderer']);
+                            const videoRenderer = item['videoRenderer'] as VideoRenderer
+                            const result: LiveStream = getStreamData(videoRenderer)
                             results.streams.push(result);
                         } catch (e) {
                             if (this.debug) console.log(e);
